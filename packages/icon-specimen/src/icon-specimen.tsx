@@ -2,24 +2,41 @@ import * as React from "react";
 import * as ReactDOMServer from "react-dom/server";
 import styled, { injectGlobal } from "react-emotion";
 import posed from "react-pose";
-import Measure from "react-measure";
+import Measure, { MeasuredComponentProps, BoundingRect } from "react-measure";
 import { markdown } from "catalog";
-
-type Size = any;
 
 injectGlobal`
 div[class*="AppLayout"] {
   z-index: unset;
+}
 `;
+
+const kRootSize = 100;
+
+/**
+ * The size of an icon. It's either responsive (adapts to EM), or has
+ * a fixed size.
+ */
+export type Size = "responsive" | number;
+
+export interface Instance {
+  size: Size;
+  Component: React.ReactType;
+}
+
+export interface Descriptor {
+  name: string;
+  instances: Instance[];
+}
 
 export interface Props {
   allSizes: Size[];
-  descriptor: { name: string; sizes: Size[] };
+  descriptor: Descriptor;
 }
 
 interface State {
   isOpen: boolean;
-  activeSize: { size: Size; Component: React.ReactType };
+  activeInstance: Instance;
 }
 
 const config = {
@@ -68,7 +85,7 @@ const CanvasBoxChild = styled(
   margin-right: 18px;
 `;
 
-const PreviewChild = styled(
+const Preview = styled(
   posed.div({
     initial: { opacity: 1 },
     fullscreen: { opacity: 0 }
@@ -78,7 +95,7 @@ const PreviewChild = styled(
 export class IconSpecimen extends React.PureComponent<Props, State> {
   state: State = {
     isOpen: false,
-    activeSize: this.props.descriptor.sizes[0]
+    activeInstance: this.props.descriptor.instances[0]
   };
 
   toggle = (): void => {
@@ -86,170 +103,17 @@ export class IconSpecimen extends React.PureComponent<Props, State> {
   };
 
   render() {
-    const {
-      // allSizes,
-      descriptor: { name, sizes }
-    } = this.props;
-    const { isOpen, activeSize } = this.state;
-
     return (
-      <Root style={{ zIndex: isOpen ? 9999 : 1 }}>
+      <Root style={{ zIndex: this.state.isOpen ? 9999 : 1 }}>
         <Measure bounds>
-          {({ measureRef, contentRect }) => (
+          {({ measureRef, contentRect }: MeasuredComponentProps) => (
             <CanvasContainer innerRef={measureRef}>
-              <button
-                style={{
-                  border: "none",
-                  outline: "none",
-                  cursor: "pointer",
-                  position: "fixed",
-                  zIndex: 99999,
-                  top: 40,
-                  right: 40,
-                  width: 56,
-                  height: 56,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: "100%",
-                  background: "#018786",
-                  boxShadow:
-                    "0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12)",
-                  opacity: isOpen ? 1 : 0,
-                  transition: "all .2s"
-                }}
-                onClick={this.toggle}
-              >
-                <svg width="36" height="36" viewBox="0 0 24 24">
-                  <path
-                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                    fill="white"
-                  />
-                  <path d="M0 0h24v24H0z" fill="none" />
-                </svg>
-              </button>
-
-              <Box pose={isOpen ? "fullscreen" : "initial"} style={{ position: isOpen ? "fixed" : "static" }}>
-                {(() => {
-                  return (
-                    <React.Fragment>
-                      <div
-                        style={{
-                          display: isOpen ? "flex" : "none",
-                          flexDirection: "column"
-                        }}
-                      >
-                        <Name
-                          style={{
-                            fontSize: "32px",
-                            margin: "-4em 0 1.5em",
-                            alignSelf: "center"
-                          }}
-                        >
-                          {name}
-                        </Name>
-                        <div style={{ display: "flex" }}>
-                          {sizes.map((size, i) => (
-                            <CanvasBoxChild key={i}>
-                              <Canvas
-                                style={{
-                                  width: 160,
-                                  height: 160
-                                }}
-                              >
-                                <Grid size={size.size === "EM" ? 60 : size.size} />
-                                <div
-                                  style={{
-                                    position: "relative",
-                                    zIndex: 20,
-                                    fontSize: size.size === "EM" ? "60px" : undefined
-                                  }}
-                                >
-                                  <size.Component />
-                                </div>
-                              </Canvas>
-                              <Name>{size.size === "EM" ? `${size.size} @ 60px` : `${size.size}x${size.size}`}</Name>
-                            </CanvasBoxChild>
-                          ))}
-                        </div>
-                        <div
-                          style={{
-                            marginTop: 40,
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "flex-start"
-                          }}
-                        >
-                          <div
-                            style={{
-                              flexGrow: 1,
-                              marginRight: 20,
-                              minWidth: 400,
-                              maxWidth: 600
-                            }}
-                            className="catalog-g6dbai-Code-Code"
-                          >
-                            <code
-                              style={{ fontSize: 14, whiteSpace: "unset" }}
-                              className="catalog-2u9ymu-HighlightedCode-HighlightedCode"
-                            >
-                              {ReactDOMServer.renderToStaticMarkup(<activeSize.Component />)}
-                            </code>
-                          </div>
-                          <button
-                            style={{
-                              outline: "none",
-                              border: "none",
-                              padding: "8px 20px 7px 16px",
-                              marginTop: 2,
-                              display: "flex",
-                              alignItems: "center",
-                              fontSize: 18,
-                              background: "#018786",
-                              color: "white"
-                            }}
-                          >
-                            <svg width="24" height="24" viewBox="0 0 24 24">
-                              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="white" />
-                              <path d="M0 0h24v24H0z" fill="none" />
-                            </svg>
-                            SVG
-                          </button>
-                        </div>
-                      </div>
-
-                      <PreviewChild>
-                        {!isOpen &&
-                          contentRect.bounds &&
-                          contentRect.bounds.width > 0 && (
-                            <Canvas
-                              onClick={this.toggle}
-                              style={{
-                                width: contentRect.bounds.width,
-                                height: contentRect.bounds.height
-                              }}
-                            >
-                              <Grid size={activeSize.size === "EM" ? 32 : activeSize.size} />
-                              <div
-                                style={{
-                                  position: "relative",
-                                  zIndex: 20,
-                                  fontSize: activeSize.size === "EM" ? "32px" : undefined
-                                }}
-                              >
-                                <activeSize.Component />
-                              </div>
-                            </Canvas>
-                          )}
-                      </PreviewChild>
-                    </React.Fragment>
-                  );
-                })()}
-              </Box>
+              <Inner {...this.props} {...this.state} {...contentRect.bounds} toggle={this.toggle} />
             </CanvasContainer>
           )}
         </Measure>
-        <Name>{name}</Name>
+
+        <Name>{this.props.descriptor.name}</Name>
 
         <div style={{ display: "none" }}>{StyleInjector}</div>
       </Root>
@@ -257,49 +121,148 @@ export class IconSpecimen extends React.PureComponent<Props, State> {
   }
 }
 
-/*
-const Sizes = styled("div")`
-  position: absolute;
-  z-index: 10;
-  font-family: "Roboto", sans-serif;
-  font-size: 0.8em;
-  display: flex;
-`;
+class Inner extends React.PureComponent<Props & State & BoundingRect & { toggle(): void }> {
+  render() {
+    const { isOpen, activeInstance, width, height, toggle } = this.props;
 
-const SizeTag = styled("div")`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 20px;
-  width: 27px;
-  color: white;
-  background: ${({ available }: { available: boolean; active: boolean }) => (available ? "#1190D7" : "#E0E0E0")};
-  border-right: 1px solid white;
-  cursor: ${({ available }: { available: boolean; active: boolean }) => (available ? "pointer" : "initial")};
-  user-select: none;
+    return (
+      <>
+        <Box pose={isOpen ? "fullscreen" : "initial"} style={{ position: isOpen ? "fixed" : "static" }}>
+          <Detail {...this.props} />
 
-  &::after {
-    display: block;
-    content: "";
-    opacity: ${({ active }: { available: boolean; active: boolean }) => (active ? 1 : 0)};
-    transition: opacity 0.12s;
-    position: absolute;
-    top: 20px;
-    left: 5px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 6px 8px 0 8px;
-    border-color: #1190d7 transparent transparent transparent;
+          <Preview>
+            {!isOpen && (
+              <Icon
+                width={width}
+                height={height}
+                size={activeInstance.size === "responsive" ? 32 : activeInstance.size}
+                Component={activeInstance.Component}
+                onClick={toggle}
+              />
+            )}
+          </Preview>
+        </Box>
+      </>
+    );
   }
-`;
-*/
+}
+
+class Detail extends React.PureComponent<Props & State & { toggle(): void }> {
+  render() {
+    const { descriptor, isOpen, activeInstance, toggle } = this.props;
+    const { name, instances } = descriptor;
+
+    return (
+      <div
+        style={{
+          display: isOpen ? "flex" : "none",
+          flexDirection: "column"
+        }}
+      >
+        <button
+          style={{
+            border: "none",
+            outline: "none",
+            cursor: "pointer",
+            position: "fixed",
+            zIndex: 99999,
+            top: 40,
+            right: 40,
+            width: 56,
+            height: 56,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "100%",
+            background: "#018786",
+            boxShadow: "0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12)",
+            opacity: isOpen ? 1 : 0,
+            transition: "all .2s"
+          }}
+          onClick={toggle}
+        >
+          <svg width="36" height="36" viewBox="0 0 24 24">
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              fill="white"
+            />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </svg>
+        </button>
+
+        <Name
+          style={{
+            fontSize: "32px",
+            margin: "-4em 0 1.5em",
+            alignSelf: "center"
+          }}
+        >
+          {name}
+        </Name>
+
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          {instances.map(({ size, Component }, i) => (
+            <CanvasBoxChild key={i}>
+              <Icon width={160} height={160} size={size === "responsive" ? 60 : size} Component={Component} />
+              <Name>{size === "responsive" ? `${size} @ 60px` : `${size}x${size}`}</Name>
+            </CanvasBoxChild>
+          ))}
+        </div>
+
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 40,
+            left: 40,
+            right: 40,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start"
+          }}
+        >
+          <div
+            style={{
+              flexGrow: 1,
+              marginRight: 40,
+            }}
+            className="catalog-g6dbai-Code-Code"
+          >
+            <code
+              style={{ fontSize: 14, whiteSpace: "unset", minHeight: 100 }}
+              className="catalog-2u9ymu-HighlightedCode-HighlightedCode"
+            >
+              {ReactDOMServer.renderToStaticMarkup(<activeInstance.Component />)}
+            </code>
+          </div>
+          <button
+            style={{
+              outline: "none",
+              border: "none",
+              padding: "8px 20px 7px 16px",
+              marginTop: 2,
+              display: "flex",
+              alignItems: "center",
+              fontSize: 18,
+              background: "#018786",
+              color: "white"
+            }}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="white" />
+              <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
+            SVG
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
 
 const CanvasContainer = styled("div")`
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: ${kRootSize}px;
+  height: ${kRootSize}px;
   top: 0;
   left: 0;
   z-index: 99900;
@@ -321,55 +284,88 @@ const Canvas = styled("div")`
 const Root = styled("div")`
   margin-right: 16px;
   margin-bottom: 16px;
-  width: 120px;
+  width: ${kRootSize}px;
 
   svg {
     display: block;
   }
 `;
 
-const Grid = ({ size }: { size: number }) => {
-  const halfSize = size / 2;
-  const center = 60;
-  const whiskerLength = size / 2;
+interface IconProps {
+  width: number;
+  height: number;
 
-  const Corner = ({ dx, dy }: { dx: (a: number, b: number) => number; dy: (a: number, b: number) => number }) => (
-    <g>
-      <line
-        x1={dx(center, halfSize)}
-        x2={dx(center, halfSize + whiskerLength)}
-        y1={dy(center, halfSize)}
-        y2={dy(center, halfSize)}
-        strokeWidth={1}
-        stroke="#EEEEEE"
-      />
-      <line
-        x1={dx(center, halfSize)}
-        x2={dx(center, halfSize)}
-        y1={dy(center, halfSize)}
-        y2={dy(center, halfSize + whiskerLength)}
-        strokeWidth={1}
-        stroke="#EEEEEE"
-      />
-    </g>
-  );
+  size: number;
+  Component: React.ReactType;
+}
 
-  const add = (a: number, b: number): number => a + b;
-  const sub = (a: number, b: number): number => a - b;
+class Icon extends React.PureComponent<IconProps & React.HTMLAttributes<HTMLDivElement>> {
+  render() {
+    const { width, height, size, Component, ...props } = this.props;
 
-  return (
-    <svg style={{ display: "block", position: "absolute", zIndex: 5 }} width="120" height="120" viewBox="0 0 120 120">
+    return (
+      <Canvas {...props} style={{ width, height }}>
+        <Grid size={size} />
+        <div
+          style={{
+            position: "relative",
+            zIndex: 20,
+            fontSize: `${size}px`
+          }}
+        >
+          <Component />
+        </div>
+      </Canvas>
+    );
+  }
+}
+
+class Grid extends React.PureComponent<{ size: number }> {
+  render() {
+    const { size } = this.props;
+
+    const halfSize = size / 2;
+    const center = 60;
+    const whiskerLength = size / 2;
+
+    const Corner = ({ dx, dy }: { dx: (a: number, b: number) => number; dy: (a: number, b: number) => number }) => (
       <g>
-        <rect x={center - halfSize} y={center - halfSize} width={size} height={size} fill="#FFBBFF" />
-
-        <Corner dx={sub} dy={sub} />
-        <Corner dx={add} dy={sub} />
-        <Corner dx={add} dy={add} />
-        <Corner dx={sub} dy={add} />
+        <line
+          x1={dx(center, halfSize)}
+          x2={dx(center, halfSize + whiskerLength)}
+          y1={dy(center, halfSize)}
+          y2={dy(center, halfSize)}
+          strokeWidth={1}
+          stroke="#EEEEEE"
+        />
+        <line
+          x1={dx(center, halfSize)}
+          x2={dx(center, halfSize)}
+          y1={dy(center, halfSize)}
+          y2={dy(center, halfSize + whiskerLength)}
+          strokeWidth={1}
+          stroke="#EEEEEE"
+        />
       </g>
-    </svg>
-  );
-};
+    );
+
+    const add = (a: number, b: number): number => a + b;
+    const sub = (a: number, b: number): number => a - b;
+
+    return (
+      <svg style={{ display: "block", position: "absolute", zIndex: 5 }} width="120" height="120" viewBox="0 0 120 120">
+        <g>
+          <rect x={center - halfSize} y={center - halfSize} width={size} height={size} fill="#FFBBFF" />
+
+          <Corner dx={sub} dy={sub} />
+          <Corner dx={add} dy={sub} />
+          <Corner dx={add} dy={add} />
+          <Corner dx={sub} dy={add} />
+        </g>
+      </svg>
+    );
+  }
+}
 
 const Name = styled("div")`
   font-style: normal;
@@ -377,7 +373,7 @@ const Name = styled("div")`
   text-rendering: optimizeLegibility;
   color: rgb(51, 51, 51);
   font-family: Roboto, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.2;
   position: relative;
   margin: 6px 0 0;

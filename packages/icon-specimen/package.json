@@ -15,6 +15,7 @@
   "devDependencies": {
     "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.6",
+    "@types/react-measure": "^2.0.2",
     "catalog": "^3.5.5",
     "emotion": "^9.2.6",
     "react": "^16.4.1",

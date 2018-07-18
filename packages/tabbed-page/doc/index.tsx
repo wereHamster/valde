@@ -4,6 +4,8 @@ import { markdown } from "catalog";
 const pane1 = {
   label: "Introduction",
   render: () => markdown`
+![version](https://img.shields.io/npm/v/@valde/tabbed-page.svg)
+
 The \`TabbedPage\` component is used in place of the standard Catalog \`Page\` component. It adds the option to switch between multiple panes.
 It provides a different way to nest content, for the case when the sidebar (which is limited to just two levels) is insufficient.
   `
