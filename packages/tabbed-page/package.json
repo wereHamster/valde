@@ -2,6 +2,7 @@
   "name": "@valde/tabbed-page",
   "version": "0.0.1",
   "main": "lib/tabbed-page.js",
+  "types": "lib/tabbed-page.d.ts",
   "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
   "license": "MIT",
   "description": "TabbedPage component for use in Catalog",
