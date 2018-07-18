@@ -1,6 +1,6 @@
 {
   "name": "@valde/tabbed-page",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "lib/tabbed-page.js",
   "types": "lib/tabbed-page.d.ts",
   "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
