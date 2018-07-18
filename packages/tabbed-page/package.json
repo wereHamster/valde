@@ -1,0 +1,27 @@
+{
+  "name": "@valde/tabbed-page",
+  "version": "0.0.1",
+  "main": "lib/tabbed-page.js",
+  "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
+  "license": "MIT",
+  "description": "TabbedPage component for use in Catalog",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wereHamster/valde.git"
+  },
+  "scripts": {
+    "prepublishOnly": "tsc"
+  },
+  "devDependencies": {
+    "@types/react": "^16.4.6",
+    "catalog": "^3.5.5",
+    "emotion": "^9.2.6",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-emotion": "^9.2.6",
+    "typescript": "^2.9.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
