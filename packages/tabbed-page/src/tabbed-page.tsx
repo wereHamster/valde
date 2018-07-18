@@ -48,13 +48,13 @@ export class TabbedPage extends React.PureComponent<Props, State> {
   }
 }
 
-export const Menu = styled("div")`
+const Menu = styled("div")`
   display: flex;
   margin-bottom: 32px;
   flex-basis: 100%;
 `;
 
-export const MenuItem = styled("div")`
+const MenuItem = styled("div")`
   font-style: normal;
   font-weight: 400;
   text-rendering: optimizeLegibility;
