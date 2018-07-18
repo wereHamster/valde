@@ -1,0 +1,6 @@
+{
+  "name": "valde",
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

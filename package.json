@@ -4,7 +4,7 @@
     "build": "next build",
     "start": "next start"
   },
-  "devDependencies": {
+  "dependencies": {
     "@types/react": "^16.4.6",
     "@zeit/next-typescript": "^1.1.0",
     "catalog": "^3.5.5",
