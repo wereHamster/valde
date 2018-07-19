@@ -421,7 +421,7 @@ const DetailHeader = styled("div")`
     opacity: 0.6;
   }
 
-  & ${Name} {
+  & div:last-child {
     font-size: 2.0736em;
     line-height: 1.2;
     color: white;
