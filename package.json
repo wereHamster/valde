@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@types/react": "^16.4.6",
+    "@types/react-measure": "^2.0.2",
     "@zeit/next-typescript": "^1.1.0",
     "catalog": "^3.5.5",
     "emotion": "^9.2.6",
