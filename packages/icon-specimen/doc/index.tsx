@@ -138,7 +138,26 @@ ${(
 
 # Usage
 
-TODO
+~~~code|lang-js
+import { IconSpecimen } from "@valde/icon-specimen";
+
+<IconSpecimen
+  allSizes={[16, 24]}
+  descriptor={{
+    name: "angle-back",
+    instances: [
+      {
+        size: 16,
+        Component: require('.../ic_angle-back_16dp.svg')
+      },
+      {
+        size: 24,
+        Component: require('.../ic_angle-back_24dp.svg')
+      }
+    ]
+  }}
+/>
+~~~
 
   `
 };
