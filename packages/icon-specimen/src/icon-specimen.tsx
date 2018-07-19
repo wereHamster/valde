@@ -92,7 +92,7 @@ const Preview = styled(
   })
 )``;
 
-export class IconSpecimen extends React.PureComponent<Props, State> {
+class IconSpecimenImpl extends React.PureComponent<Props, State> {
   state: State = {
     isOpen: false,
     activeInstance: this.props.descriptor.instances[0]
@@ -121,42 +121,54 @@ export class IconSpecimen extends React.PureComponent<Props, State> {
   }
 }
 
+export const IconSpecimen: React.ComponentType<Props> = IconSpecimenImpl
+
 class Inner extends React.PureComponent<Props & State & BoundingRect & { toggle(): void }> {
   render() {
     const { isOpen, activeInstance, width, height, toggle } = this.props;
 
     return (
-      <>
-        <Box pose={isOpen ? "fullscreen" : "initial"} style={{ position: isOpen ? "fixed" : "static" }}>
-          <Detail {...this.props} />
+      <Box pose={isOpen ? "fullscreen" : "initial"} style={{ position: isOpen ? "fixed" : "static" }}>
+        <Detail {...this.props} />
 
-          <Preview>
-            {!isOpen && (
-              <Icon
-                width={width}
-                height={height}
-                size={activeInstance.size === "responsive" ? 32 : activeInstance.size}
-                Component={activeInstance.Component}
-                onClick={toggle}
-              />
-            )}
-          </Preview>
-        </Box>
-      </>
+        <Preview>
+          {!isOpen && (
+            <Icon
+              width={width}
+              height={height}
+              size={activeInstance.size === "responsive" ? 32 : activeInstance.size}
+              Component={activeInstance.Component}
+              onClick={toggle}
+            />
+          )}
+        </Preview>
+      </Box>
     );
   }
 }
 
-class Detail extends React.PureComponent<Props & State & { toggle(): void }> {
+class Detail extends React.PureComponent<Props & State & { toggle(): void }, { activeInstance: Instance }> {
+  state = {
+    activeInstance: this.props.descriptor.instances[0]
+  };
+
+  activateInstance = (i: number) => (): void => {
+    this.setState({ activeInstance: this.props.descriptor.instances[i] });
+  };
+
   render() {
-    const { descriptor, isOpen, activeInstance, toggle } = this.props;
+    const { activeInstance } = this.state;
+    const { descriptor, isOpen, toggle } = this.props;
     const { name, instances } = descriptor;
 
     return (
       <div
         style={{
           display: isOpen ? "flex" : "none",
-          flexDirection: "column"
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignSelf: "stretch",
+          flexGrow: 1
         }}
       >
         <button
@@ -190,31 +202,31 @@ class Detail extends React.PureComponent<Props & State & { toggle(): void }> {
           </svg>
         </button>
 
-        <Name
-          style={{
-            fontSize: "32px",
-            margin: "-4em 0 1.5em",
-            alignSelf: "center"
-          }}
-        >
-          {name}
-        </Name>
+        <DetailHeader>
+          <div>Icon</div>
+          <Name>{name}</Name>
+        </DetailHeader>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
           {instances.map(({ size, Component }, i) => (
             <CanvasBoxChild key={i}>
-              <Icon width={160} height={160} size={size === "responsive" ? 60 : size} Component={Component} />
-              <Name>{size === "responsive" ? `${size} @ 60px` : `${size}x${size}`}</Name>
+              <Icon
+                width={160}
+                height={160}
+                size={size === "responsive" ? 60 : size}
+                Component={Component}
+                highlighted={instances[i] === activeInstance}
+                onClick={this.activateInstance(i)}
+              />
+              <Name style={{ fontSize: 16 }}>{size === "responsive" ? `@60px` : `${size}x${size}`}</Name>
             </CanvasBoxChild>
           ))}
         </div>
 
         <div
           style={{
-            position: 'absolute',
-            bottom: 40,
-            left: 40,
-            right: 40,
+            alignSelf: "stretch",
+            margin: "0 40px 40px",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "flex-start"
@@ -223,7 +235,7 @@ class Detail extends React.PureComponent<Props & State & { toggle(): void }> {
           <div
             style={{
               flexGrow: 1,
-              marginRight: 40,
+              marginRight: 40
             }}
             className="catalog-g6dbai-Code-Code"
           >
@@ -276,6 +288,9 @@ const Canvas = styled("div")`
   transition: box-shadow 0.2s;
   cursor: pointer;
 
+  box-shadow: ${({ highlighted }: { highlighted?: boolean }) =>
+    highlighted ? "0 0 6px 2px rgba(0, 0, 0, 0.1)" : undefined};
+
   &:hover {
     box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1);
   }
@@ -297,6 +312,8 @@ interface IconProps {
 
   size: number;
   Component: React.ReactType;
+
+  highlighted?: boolean;
 }
 
 class Icon extends React.PureComponent<IconProps & React.HTMLAttributes<HTMLDivElement>> {
@@ -375,9 +392,39 @@ const Name = styled("div")`
   font-family: Roboto, sans-serif;
   font-size: 12px;
   line-height: 1.2;
-  position: relative;
   margin: 6px 0 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+const DetailHeader = styled("div")`
+  height: 179px;
+  align-self: stretch;
+  padding: 0px 0px 21px 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  background: rgb(0, 59, 92);
+  margin: 0px;
+
+  & div:first-child {
+    font-style: normal;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+    font-family: Roboto, sans-serif;
+
+    font-size: 1.2em;
+    line-height: 1.2;
+    color: white;
+    opacity: 0.6;
+  }
+
+  & ${Name} {
+    font-size: 2.0736em;
+    line-height: 1.2;
+    color: white;
+    margin: 0;
+  }
 `;
