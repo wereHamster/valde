@@ -1,6 +1,6 @@
 {
   "name": "@valde/icon-specimen",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/icon-specimen.js",
   "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
   "license": "MIT",
