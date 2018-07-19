@@ -1,8 +1,12 @@
 import * as React from "react";
 import { Catalog } from "catalog";
 
-export default class extends React.PureComponent<{}> {
-  state = { isMounted: false };
+interface State {
+  isMounted: boolean;
+}
+
+export default class extends React.PureComponent<{}, State> {
+  state: State = { isMounted: false };
 
   componentDidMount() {
     this.setState({ isMounted: true });
