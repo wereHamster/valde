@@ -83,7 +83,7 @@ export default class extends React.PureComponent<{}, State> {
 declare const require: (moduleName: string) => any;
 
 const config = {
-  title: "Valde",
+  title: "Valdë",
 
   theme: {
     brandColor: "#460028",
