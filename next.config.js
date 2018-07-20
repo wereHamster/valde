@@ -7,7 +7,7 @@ const urlLoader = mimetype => ({
     fallback: "file-loader",
     mimetype,
     name: "[name]-[hash].[ext]",
-    publicPath: "/_next/static/",
+    publicPath: "/_next/",
     outputPath: "static/"
   }
 });
