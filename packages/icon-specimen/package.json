@@ -23,7 +23,7 @@
     "react-emotion": "^9.2.6",
     "react-measure": "^2.0.2",
     "react-pose": "^2.2.0",
-    "typescript": "^2.9.2"
+    "typescript": "^3.0.1"
   },
   "publishConfig": {
     "access": "public"
