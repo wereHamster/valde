@@ -20,7 +20,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.6",
-    "typescript": "^2.9.2"
+    "typescript": "^3.0.1"
   },
   "publishConfig": {
     "access": "public"
