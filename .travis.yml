@@ -1,0 +1,20 @@
+sudo: false
+
+language: node_js
+node_js:
+- '10'
+
+env:
+  global:
+    - secure: "NFGt9U7+4inZZVK0yhDOhHDVmn4S4Ry1wPrjssYDtHuWcHSFNLwUck39HpxRkBOmFmC2o7z7hg/R++++3M8F5bz1t4FjgLyZJjwPUxQ0+LjecS2jyJdhgv4K1JzNhtuZLEcro5PKgJRaQAI8IGcaqAL+gWAYA3iw9KNhkfG+OoWi2yTmTPhAUk6ukn56wXdB1e92jBfOQKSk6z/PMZC08G8M5aS67TmDISsF3T1Hi5WiUHuJNCdDuZlm13n3Vl4dJe6VL2OkZl9wLOMZM57No3mvpS7HJQzpdaBGKNTXf3GkrSsVxAQPa055lHcFGHlDNLcxbA0DqDxb5fug3WJSC6OLGLNTC2X8JgdIGYC/IxU/RqrmtcyRTxGYCjcUK6fXYSNCmor5YganQRKX5rTidDXmgJmcWbfaAwQsDlOGv486W1w3BVs069f6+H36BamPpWzz5q0Oaoamh8Uva8l84em0fdl7G3U5n42Hl4PbIae3p3vT0OLCjkudSSgUbE2+zWr/k21miT5ILhmB1uHjfN/3ZatB98MxUMaU8jBoVi84JiBf3OULbnN9NGzzFKauogy0Lx6TslodWJ29v+PD1BrYhta5vClEEKRt6dKwBnKYUeRV/XJQmiM8soNCwIFXF27r2nkkpHEnQBvM1N9ZXMxJP/2XTzvujQvu4nYbvDE="
+
+cache:
+  directories:
+  - node_modules
+
+deploy:
+  provider: script
+  script: script/deploy-canary
+  skip_cleanup: true
+  on:
+    all_branches: true

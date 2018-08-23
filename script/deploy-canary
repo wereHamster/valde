@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+
+npm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
+node_modules/.bin/lerna publish --canary
