@@ -1,9 +1,9 @@
-Valde is an incubator for Catalog extensions. The repository contains multiple packages (managed by lerna) that are published independently into the @valde scope on npm.org.
+Valde is an incubator for [Catalog](https://www.catalog.style) extensions. The repository contains multiple packages (managed by [lerna](https://lernajs.io)) that are published independently into the **@valde** scope on [npmjs.com](https://www.npmjs.com).
 
-## Contributing
+### Usage
 
-The root of the repository contains a next / catalog app with documentation about all the individual packages. To start the app locally use:
+Packages are stored in the `packages/` folder, each has its own subfolder. To install a package, use `npm install @valde/<package>`.
 
-```
-npm run dev
-```
+### Contributing
+
+Do you want to make changes or create a new package in the **@valde** namespace? Head over [here](/contributing) to read how to get started.

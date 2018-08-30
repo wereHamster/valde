@@ -119,6 +119,11 @@ const config = {
       component: require("../README.md")
     },
     {
+      title: "Contributing",
+      path: "/contributing",
+      component: require("../docs/contributing.md")
+    },
+    {
       title: "Packages",
       pages: [
         require("../packages/icon-specimen/doc/index").default,
