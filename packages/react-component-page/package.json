@@ -1,6 +1,6 @@
 {
   "name": "@valde/react-component-page",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "lib/index.js",
   "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
