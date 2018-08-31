@@ -51,6 +51,51 @@ injectGlobal`
   font-weight: 700;
   src: url(${require("../fonts/Tuna/371F3E_1_0.woff2")}) format('woff2');
 }
+
+body {
+  ul[class*="Menu-Menu"] {
+    border: none;
+
+    > li {
+      > a {
+        border: none;
+        padding: 8px 40px;
+        font-size: 1.3rem;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      > div {
+        > a {
+          border: none;
+          padding: 8px 40px;
+          font-size: 1.3rem;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        > ul {
+          margin-top: -4px;
+          > li {
+            > a {
+              border: none;
+              padding: 0 40px;
+              font-size: 1rem;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 `;
 
 /*
