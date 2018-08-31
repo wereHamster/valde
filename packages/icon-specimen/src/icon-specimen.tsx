@@ -108,7 +108,9 @@ class IconSpecimenImpl extends React.PureComponent<Props, State> {
         <Measure bounds>
           {({ measureRef, contentRect }: MeasuredComponentProps) => (
             <CanvasContainer innerRef={measureRef}>
-              {contentRect.bounds && <Inner {...this.props} {...this.state} {...contentRect.bounds} toggle={this.toggle} />}
+              {contentRect.bounds && (
+                <Inner {...this.props} {...this.state} {...contentRect.bounds} toggle={this.toggle} />
+              )}
             </CanvasContainer>
           )}
         </Measure>
@@ -121,7 +123,7 @@ class IconSpecimenImpl extends React.PureComponent<Props, State> {
   }
 }
 
-export const IconSpecimen: React.ComponentType<Props> = IconSpecimenImpl
+export const IconSpecimen: React.ComponentType<Props> = IconSpecimenImpl;
 
 class Inner extends React.PureComponent<Props & State & BoundingRect & { toggle(): void }> {
   render() {
