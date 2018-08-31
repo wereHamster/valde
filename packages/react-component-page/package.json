@@ -10,9 +10,6 @@
     "type": "git",
     "url": "https://github.com/wereHamster/valde.git"
   },
-  "scripts": {
-    "prepublishOnly": "tsc"
-  },
   "bin": {
     "valde-react-component-page-generator": "./lib/compiler.js"
   },

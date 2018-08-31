@@ -10,9 +10,6 @@
     "type": "git",
     "url": "https://github.com/wereHamster/valde.git"
   },
-  "scripts": {
-    "prepublishOnly": "tsc"
-  },
   "peerDependencies": {
     "catalog": "^3.5.5",
     "emotion": "^9.2.6",
