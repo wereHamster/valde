@@ -1,0 +1,37 @@
+{
+  "name": "react-component-page",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wereHamster/valde.git"
+  },
+  "scripts": {
+    "prepublishOnly": "tsc"
+  },
+  "bin": {
+    "valde-react-component-page-generator": "./lib/compiler.js"
+  },
+  "dependencies": {
+    "@types/prettier": "^1.13.2",
+    "prettier": "^1.14.2",
+    "typescript": "^3.0.1"
+  },
+  "peerDependencies": {
+    "catalog": "^3.5.5",
+    "emotion": "^9.2.6",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-emotion": "^9.2.6"
+  },
+  "devDependencies": {
+    "@types/react": "^16.4.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

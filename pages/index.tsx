@@ -8,7 +8,7 @@ injectGlobal`
   font-family: Tuna;
   font-style: normal;
   font-weight: 300;
-  src: url(${require('../fonts/Tuna/371F3E_3_0.woff2')}) format('woff2');
+  src: url(${require("../fonts/Tuna/371F3E_3_0.woff2")}) format('woff2');
 }
 
 /* LightItalic */
@@ -16,7 +16,7 @@ injectGlobal`
   font-family: Tuna;
   font-style: italic;
   font-weight: 300;
-  src: url(${require('../fonts/Tuna/371F3E_5_0.woff2')}) format('woff2');
+  src: url(${require("../fonts/Tuna/371F3E_5_0.woff2")}) format('woff2');
 }
 
 
@@ -33,7 +33,7 @@ injectGlobal`
   font-family: Tuna;
   font-style: italic;
   font-weight: 400;
-  src: url(${require('../fonts/Tuna/371F3E_9_0.woff2')}) format('woff2');
+  src: url(${require("../fonts/Tuna/371F3E_9_0.woff2")}) format('woff2');
 }
 
 /* Bold */
@@ -49,7 +49,7 @@ injectGlobal`
   font-family: Tuna;
   font-style: italic;
   font-weight: 700;
-  src: url(${require('../fonts/Tuna/371F3E_1_0.woff2')}) format('woff2');
+  src: url(${require("../fonts/Tuna/371F3E_1_0.woff2")}) format('woff2');
 }
 `;
 
@@ -127,8 +127,20 @@ const config = {
       title: "Packages",
       pages: [
         require("../packages/icon-specimen/doc/index").default,
-        require("../packages/tabbed-page/doc/index").default
+        require("../packages/tabbed-page/doc/index").default,
+        require("../packages/react-component-page/doc/index").default
       ]
+    },
+    {
+      title: "Playground",
+      pages: [
+        {
+          title: "react-component-page",
+          path: "/playground/react-component-page",
+          component: require("../packages/react-component-page/doc/playground").default
+        }
+      ],
+      hideFromMenu: true
     }
   ]
 };
