@@ -33,6 +33,8 @@ The page will automatically reload when you make the change, so you get immediat
 
  6. Register the catalog page in the main index (`pages/index.tsx`).
 
+ 7. Register the package in `packages/tsconfig.json`.
+
 That's pretty much it. Now start the server, navigate to the documentation page of that package and start writing the code.
 
 As soon as you have something worthwhile to show, open a pull request.

@@ -1,0 +1,8 @@
+{
+  "files": [],
+  "references": [
+    { "path": "icon-specimen" },
+    { "path": "react-component-page" },
+    { "path": "tabbed-page" }
+  ]
+}

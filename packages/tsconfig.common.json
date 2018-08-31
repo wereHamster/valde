@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    "target": "es2018",
+    "lib": ["dom", "es2018"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "react",
+
+    "strict": false, /* TODO: Enable this */
+  }
+}

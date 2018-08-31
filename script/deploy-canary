@@ -3,8 +3,6 @@ set -e
 
 npm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
 
-for pkg in packages/*; do
-  (cd $pkg; ../../node_modules/.bin/tsc --build)
-done
+(cd packages && ../node_modules/.bin/tsc --build)
 
 node_modules/.bin/lerna publish --canary --yes

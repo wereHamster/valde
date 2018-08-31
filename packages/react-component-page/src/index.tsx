@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Page, CodeSpecimen } from "catalog";
 
-export const __catalogPreview__ = (component: React.ComponentClass, Preview: React.ComponentType) => {
-  component["__catalogPreview__"] = Preview;
+export const __catalogPreview__ = (component: React.ComponentClass<any>, Preview: React.ComponentType) => {
+  (component as any)["__catalogPreview__"] = Preview;
 };
 
 export interface Field {
@@ -57,11 +57,11 @@ export interface Props {
 
 export class ReactComponentPage extends React.PureComponent<Props> {
   componentDidMount() {
-    const h1 = document.querySelector("div[class*=PageHeader-PageHeader] h1");
+    const h1 = document.querySelector("div[class*=PageHeader-PageHeader] h1")!;
     h1.innerHTML = "";
     h1.appendChild(document.createTextNode(`<${this.props.componentName} … >`));
 
-    const h2 = document.querySelector("div[class*=PageHeader-PageHeader] h2");
+    const h2 = document.querySelector("div[class*=PageHeader-PageHeader] h2")!;
     h2.innerHTML = `${this.props.module}`;
   }
 
@@ -106,7 +106,7 @@ export class ReactComponentPage extends React.PureComponent<Props> {
                 defaultProps[name] && (
                   <React.Fragment key={i}>
                     {`    `}
-                    {name}: <a>{defaultProps[name].value}</a>,{`\n`}
+                    {name}: <a>{defaultProps[name]!.value}</a>,{`\n`}
                   </React.Fragment>
                 )
             )}
