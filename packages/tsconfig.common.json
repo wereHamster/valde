@@ -11,6 +11,6 @@
     "moduleResolution": "node",
     "jsx": "react",
 
-    "strict": false, /* TODO: Enable this */
+    "strict": true,
   }
 }

@@ -4,7 +4,7 @@ export const SomeComponentPageProps = {
   module: "left-pad-react",
   componentName: `SomeComponent`,
   headline: `The best component in the whole wide world.`,
-  Preview: SomeComponent["__catalogPreview__"],
+  Preview: (SomeComponent as any)["__catalogPreview__"],
   props: {
     name: "SomeComponentProps",
     fields: [

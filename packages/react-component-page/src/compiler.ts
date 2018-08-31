@@ -24,8 +24,8 @@ const main = async () => {
   // Parse the source file and extract all components that are suitable candidates
   // for react-component-page.
   let module = "unknown";
-  const components = [];
-  const sourceFile = program.getSourceFiles().find(f => f.fileName === file);
+  const components: any[] = [];
+  const sourceFile = program.getSourceFiles().find(f => f.fileName === file)!;
   ts.forEachChild(sourceFile, visit);
 
   // Create the __doc__ directory into which we place the output files.
@@ -38,14 +38,14 @@ const main = async () => {
 
   const prelude = [`import { ${components.map(c => c.name).join(", ")} } from "../${basename}";`].join("\n");
 
-  const toPageCode = (component): string => {
+  const toPageCode = (component: any): string => {
     console.log(component);
     return [
       `export const ${component.name}PageProps = {`,
       `  module: "${module}",`,
       `  componentName: \`${component.name}\`,`,
       `  headline: \`${component.documentation.split("\n")[0]}\`,`,
-      `  Preview: ${component.name}["__catalogPreview__"],`,
+      `  Preview: (${component.name} as any)["__catalogPreview__"],`,
       `  props: { name: "${component.props.name}", fields: [${component.props.fields.map(JSON.stringify)}] },`,
       `  defaultProps: {},`,
       `};`
@@ -79,8 +79,8 @@ const main = async () => {
   function serializeClass(node: ts.ClassDeclaration, symbol: ts.Symbol) {
     // The first type argument of React.Component are the props, we need that to get
     // to its members.
-    const typeArg = node.heritageClauses[0].types[0].typeArguments[0];
-    const typeArgSymbol = checker.getSymbolAtLocation((typeArg as any).typeName);
+    const typeArg = node.heritageClauses![0].types[0].typeArguments![0];
+    const typeArgSymbol = checker.getSymbolAtLocation((typeArg as any).typeName)!;
 
     return {
       name: symbol.getName(),
@@ -88,7 +88,7 @@ const main = async () => {
       tags: symbol.getJsDocTags(),
       props: {
         name: typeArgSymbol.escapedName,
-        fields: Array.from(typeArgSymbol.members.entries() as any).map(([k, v]) => {
+        fields: Array.from<any>(typeArgSymbol.members!.entries() as any).map(([k, v]) => {
           const t = checker.getTypeOfSymbolAtLocation(v, v.valueDeclaration!);
           const type = {
             name: checker.typeToString(t),
