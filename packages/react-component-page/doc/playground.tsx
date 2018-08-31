@@ -49,4 +49,10 @@ const samplePropsCarrier = (
   />
 );
 
-export default () => <ReactComponentPage {...SomeComponentPageProps} />;
+export default () => (
+  <ReactComponentPage
+    {...SomeComponentPageProps}
+    sourceUrl="https://github.com/wereHamster/valde/blob/cc6f39380a7345659626f872b4259600a6380216/packages/react-component-page/src/example.tsx#L23-L34"
+    discussionUrl="https://github.com/wereHamster/valde/issues/new?title=react-component-page"
+  />
+);
