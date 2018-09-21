@@ -101,6 +101,13 @@ export class ReactComponentPage extends React.PureComponent<Props> {
     );
   }
 
+  componentWillUnmount() {
+    const el = document.querySelector("div[class*=PageHeader-PageHeader] .valde-react-component-page-extension");
+    if (el) {
+      el.remove();
+    }
+  }
+
   render() {
     const { headline, Preview, props, defaultProps } = this.props;
 
