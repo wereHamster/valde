@@ -1,3 +1,4 @@
+import * as PropTypes from "prop-types";
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server";
 import styled, { injectGlobal } from "react-emotion";
@@ -93,6 +94,10 @@ const Preview = styled(
 )``;
 
 class IconSpecimenImpl extends React.PureComponent<Props, State> {
+  static contextTypes = {
+    catalog: PropTypes.object.isRequired
+  };
+
   state: State = {
     isOpen: false,
     activeInstance: this.props.descriptor.instances[0]
@@ -103,6 +108,8 @@ class IconSpecimenImpl extends React.PureComponent<Props, State> {
   };
 
   render() {
+    const { catalog } = this.context;
+
     return (
       <Root style={{ zIndex: this.state.isOpen ? 9999 : 1 }}>
         <Measure bounds>
@@ -115,7 +122,7 @@ class IconSpecimenImpl extends React.PureComponent<Props, State> {
           )}
         </Measure>
 
-        <Name>{this.props.descriptor.name}</Name>
+        <Name theme={catalog.theme}>{this.props.descriptor.name}</Name>
 
         <div style={{ display: "none" }}>{StyleInjector}</div>
       </Root>
@@ -150,6 +157,10 @@ class Inner extends React.PureComponent<Props & State & BoundingRect & { toggle(
 }
 
 class Detail extends React.PureComponent<Props & State & { toggle(): void }, { activeInstance: Instance }> {
+  static contextTypes = {
+    catalog: PropTypes.object.isRequired
+  };
+
   state = {
     activeInstance: this.props.descriptor.instances[0]
   };
@@ -159,6 +170,7 @@ class Detail extends React.PureComponent<Props & State & { toggle(): void }, { a
   };
 
   render() {
+    const { catalog } = this.context;
     const { activeInstance } = this.state;
     const { descriptor, isOpen, toggle } = this.props;
     const { name, instances } = descriptor;
@@ -204,9 +216,9 @@ class Detail extends React.PureComponent<Props & State & { toggle(): void }, { a
           </svg>
         </button>
 
-        <DetailHeader>
+        <DetailHeader theme={catalog.theme}>
           <div>Icon</div>
-          <Name>{name}</Name>
+          <Name theme={catalog.theme}>{name}</Name>
         </DetailHeader>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
@@ -220,7 +232,7 @@ class Detail extends React.PureComponent<Props & State & { toggle(): void }, { a
                 highlighted={instances[i] === activeInstance}
                 onClick={this.activateInstance(i)}
               />
-              <Name style={{ fontSize: 16 }}>{size === "responsive" ? `@60px` : `${size}x${size}`}</Name>
+              <Name theme={catalog.theme}>{size === "responsive" ? `@60px` : `${size}x${size}`}</Name>
             </CanvasBoxChild>
           ))}
         </div>
@@ -291,10 +303,19 @@ const Canvas = styled("div")`
   cursor: pointer;
 
   box-shadow: ${({ highlighted }: { highlighted?: boolean }) =>
-    highlighted ? "0 0 6px 2px rgba(0, 0, 0, 0.1)" : undefined};
+    highlighted ? "0 0 6px 2px rgba(0, 0, 0, 0.1)" : "0 0 1px 0 rgba(0, 0, 0, 0.1)"};
 
   &:hover {
     box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  svg rect {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  &:hover svg rect {
+    opacity: 1;
   }
 `;
 
@@ -390,10 +411,10 @@ const Name = styled("div")`
   font-style: normal;
   font-weight: 400;
   text-rendering: optimizeLegibility;
-  color: rgb(51, 51, 51);
-  font-family: Roboto, sans-serif;
-  font-size: 12px;
-  line-height: 1.2;
+  color: ${(p: { theme: Theme }) => p.theme.textColor};
+  font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
+  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, -1)};
+  line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
   margin: 6px 0 0;
   white-space: nowrap;
   overflow: hidden;
@@ -408,25 +429,38 @@ const DetailHeader = styled("div")`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  background: rgb(0, 59, 92);
+  background: ${(p: { theme: Theme }) => p.theme.brandColor};
   margin: 0px;
 
   & div:first-child {
     font-style: normal;
     font-weight: 400;
     text-rendering: optimizeLegibility;
-    font-family: Roboto, sans-serif;
-
-    font-size: 1.2em;
-    line-height: 1.2;
+    font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
+    font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, 1)};
+    line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
     color: white;
     opacity: 0.6;
   }
 
   & div:last-child {
-    font-size: 2.0736em;
-    line-height: 1.2;
+    font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
+    font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, 4)};
+    line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
     color: white;
     margin: 0;
   }
 `;
+
+interface Theme {
+  brandColor: string;
+  fontHeading: string;
+  textColor: string;
+  sidebarColorText: string;
+  sidebarColorTextActive: string;
+  baseFontSize: number;
+  msRatio: number;
+}
+
+const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
+  `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;
