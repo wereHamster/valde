@@ -1,6 +1,7 @@
 {
   "name": "valde",
   "public": true,
+  "alias": "valde.caurea.org",
   "env": {
     "NODE_ENV": "production"
   }
