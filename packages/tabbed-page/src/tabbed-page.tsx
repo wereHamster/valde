@@ -1,3 +1,4 @@
+import * as PropTypes from "prop-types";
 import * as React from "react";
 import styled from "react-emotion";
 import { Page } from "catalog";
@@ -17,6 +18,10 @@ interface State {
 }
 
 export class TabbedPage extends React.PureComponent<Props, State> {
+  static contextTypes = {
+    catalog: PropTypes.object.isRequired
+  };
+
   state: State = {
     activePaneIndex: this.props.initialPaneIndex || 0
   };
@@ -26,6 +31,7 @@ export class TabbedPage extends React.PureComponent<Props, State> {
   };
 
   render() {
+    const { catalog } = this.context;
     const { panes } = this.props;
     const { activePaneIndex } = this.state;
     const activePane = panes[activePaneIndex];
@@ -34,15 +40,13 @@ export class TabbedPage extends React.PureComponent<Props, State> {
       <Page>
         <Menu>
           {panes.map(({ label }, i) => (
-            <MenuItem key={i} isActive={activePaneIndex === i} onClick={this.activatePane(i)}>
+            <MenuItem key={i} theme={catalog.theme} isActive={activePaneIndex === i} onClick={this.activatePane(i)}>
               {label}
             </MenuItem>
           ))}
         </Menu>
 
-        <Content>
-          {activePane && activePane.render()}
-        </Content>
+        <Content>{activePane && activePane.render()}</Content>
       </Page>
     );
   }
@@ -58,27 +62,39 @@ const MenuItem = styled("div")`
   font-style: normal;
   font-weight: 400;
   text-rendering: optimizeLegibility;
-  color: #000000;
-  font-family: "Roboto", sans-serif;
-  font-size: 27.648px;
-  line-height: 1.2;
+  color: ${(p: { theme: Theme }) => p.theme.sidebarColorText};
+  font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
+  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, 2)};
+  line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
   position: relative;
   margin-right: 32px;
-  border-bottom: 2px solid ${(p: { isActive: boolean }) => (p.isActive ? "rgb(17, 144, 215)" : "tranparent")};
+  border-bottom: 2px solid
+    ${(p: { theme: Theme; isActive: boolean }) => (p.isActive ? p.theme.sidebarColorTextActive : "transparent")};
   cursor: pointer;
   transition: color 0.12s;
   user-select: none;
 
   &:hover {
-    color: rgb(17, 144, 215);
+    color: ${(p: { theme: Theme }) => p.theme.sidebarColorTextActive};
   }
 `;
 
-const Content = styled('div')`
+const Content = styled("div")`
   flex-basis: 100%;
 
   & > div[class*="Page-Page"] {
     margin: 0;
     padding: 0;
   }
-`
+`;
+
+interface Theme {
+  fontHeading: string;
+  sidebarColorText: string;
+  sidebarColorTextActive: string;
+  baseFontSize: number;
+  msRatio: number;
+}
+
+const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
+  `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;
