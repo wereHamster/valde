@@ -19,12 +19,6 @@
     "react-measure": "^2.0.2",
     "react-pose": "^3.0.0"
   },
-  "devDependencies": {
-    "@types/react": "^16.4.6",
-    "@types/react-dom": "^16.0.6",
-    "@types/react-measure": "^2.0.2",
-    "typescript": "^3.0.1"
-  },
   "publishConfig": {
     "access": "public"
   }

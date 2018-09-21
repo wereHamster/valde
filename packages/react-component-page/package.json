@@ -24,9 +24,6 @@
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.6"
   },
-  "devDependencies": {
-    "@types/react": "^16.4.6"
-  },
   "publishConfig": {
     "access": "public"
   }
