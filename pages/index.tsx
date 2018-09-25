@@ -177,6 +177,16 @@ const config = {
       ]
     },
     {
+      title: "User Guides",
+      pages: [
+        {
+          title: "Typography",
+          path: "/user-guides/typography",
+          component: require("../docs/user-guides/typography.md")
+        }
+      ]
+    },
+    {
       title: "Playground",
       pages: [
         {
