@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import styled from "react-emotion";
-import { Page, CodeSpecimen } from "catalog";
+import { Page, CodeSpecimen } from "@catalog/core";
 
 export const __catalogPreview__ = (component: React.ComponentClass<any>, Preview: React.ComponentType) => {
   (component as any)["__catalogPreview__"] = Preview;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Catalog } from "catalog";
+import { Catalog } from "@catalog/core";
 import { injectGlobal } from "emotion";
 
 injectGlobal`

@@ -1,5 +1,5 @@
 import { TabbedPage } from "../src/tabbed-page";
-import { markdown } from "catalog";
+import { markdown } from "@catalog/core";
 
 const pane1 = {
   label: "Introduction",
@@ -37,7 +37,7 @@ You can use the \`markdown\` function from catalog in the render function if you
 
 ~~~code|lang-js
 import { TabbedPage } from "@valde/tabbed-page"
-import { markdown } from "catalog"
+import { markdown } from "@catalog/core"
 
 export default () => (
   <TabbedPage

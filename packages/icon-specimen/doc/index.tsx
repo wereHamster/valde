@@ -1,5 +1,5 @@
 import { IconSpecimen } from "../src/icon-specimen";
-import { markdown } from "catalog";
+import { markdown } from "@catalog/core";
 
 export default {
   title: "icon-specimen",

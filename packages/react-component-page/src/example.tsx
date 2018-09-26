@@ -4,7 +4,7 @@
 
 import * as React from "react";
 import { __catalogPreview__ } from "../src/index";
-import { ReactSpecimen } from "catalog";
+import { ReactSpecimen } from "@catalog/core";
 
 export type Color = "RED" | "GREEN" | "MAGENTA";
 

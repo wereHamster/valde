@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ReactComponentPage } from "../src/index";
-import { ReactSpecimen, CodeSpecimen } from "catalog";
+import { ReactSpecimen, CodeSpecimen } from "@catalog/core";
 import { SomeComponentPageProps } from "../src/__doc__/example.components";
 
 const Preview = () => (
