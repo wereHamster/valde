@@ -1,4 +1,4 @@
-import { markdown } from "catalog";
+import { markdown } from "@catalog/core";
 
 export default {
   title: "react-component-page",
@@ -19,7 +19,7 @@ Since the component replaces the whole page, we can't show it here inline. But y
 If you've previously written a catalog page like this:
 
 ~~~code|lang-js
-import { markdown } from "catalog";
+import { markdown } from "@catalog/core";
 export default () => markdown\`
 …
 \`;
@@ -51,7 +51,7 @@ The generator extracts texts from JSDoc comments. The component preview however 
 ~~~code|lang-js
 import * as React from "react";
 import { __catalogPreview__ } from "@valde/react-component-page";
-import { ReactSpecimen } from "catalog";
+import { ReactSpecimen } from "@catalog/core";
 
 export class Button extends React.Component<ButtonProps> {
   render() {

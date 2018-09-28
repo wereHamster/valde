@@ -1,7 +1,7 @@
 import * as PropTypes from "prop-types";
 import * as React from "react";
 import styled from "react-emotion";
-import { Page } from "catalog";
+import { Page } from "@catalog/core";
 
 export interface Pane {
   label: string;

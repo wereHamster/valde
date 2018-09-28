@@ -4,7 +4,7 @@ import * as ReactDOMServer from "react-dom/server";
 import styled, { injectGlobal } from "react-emotion";
 import posed from "react-pose";
 import Measure, { MeasuredComponentProps, BoundingRect } from "react-measure";
-import { markdown } from "catalog";
+import { markdown } from "@catalog/core";
 
 injectGlobal`
 div[class*="AppLayout"] {

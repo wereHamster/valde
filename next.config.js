@@ -16,7 +16,7 @@ module.exports = withTypescript({
   webpack: config => {
     config.module.rules.push({
       test: /\.md$/,
-      use: ["catalog/loader", "raw-loader"]
+      use: ["@catalog/loader", "raw-loader"]
     });
     config.module.rules.push({
       test: /\.woff2$/,
