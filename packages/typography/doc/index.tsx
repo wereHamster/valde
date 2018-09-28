@@ -1,5 +1,5 @@
 import { Cut, Matrix, Fallback, Font } from "../src/index";
-import { markdown } from "catalog";
+import { markdown } from "@catalog/core";
 
 const tunaLight: Cut = {
   name: "Tuna Light",
