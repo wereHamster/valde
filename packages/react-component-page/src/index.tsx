@@ -71,19 +71,19 @@ export class ReactComponentPage extends React.PureComponent<Props> {
   componentDidMount() {
     const { module, componentName, sourceUrl, discussionUrl } = this.props;
 
-    const h1 = document.querySelector("div[class*=PageHeader-PageHeader] h1")!;
+    const h1 = document.querySelector("div[class*=PageHeader-className] h1")!;
     h1.innerHTML = "";
     h1.appendChild(document.createTextNode(`<${componentName} … >`));
 
-    const h2 = document.querySelector("div[class*=PageHeader-PageHeader] h2")!;
+    const h2 = document.querySelector("div[class*=PageHeader-className] h2")!;
     h2.innerHTML = `${module}`;
 
     const container = (() => {
-      let el = document.querySelector("div[class*=PageHeader-PageHeader] .valde-react-component-page-extension");
+      let el = document.querySelector("div[class*=PageHeader-className] .valde-react-component-page-extension");
       if (!el) {
         el = document.createElement("div");
         el.className = "valde-react-component-page-extension";
-        document.querySelector("div[class*=PageHeader-PageHeader]")!.appendChild(el);
+        document.querySelector("div[class*=PageHeader-className]")!.appendChild(el);
       }
       return el;
     })();
@@ -102,7 +102,7 @@ export class ReactComponentPage extends React.PureComponent<Props> {
   }
 
   componentWillUnmount() {
-    const el = document.querySelector("div[class*=PageHeader-PageHeader] .valde-react-component-page-extension");
+    const el = document.querySelector("div[class*=PageHeader-className] .valde-react-component-page-extension");
     if (el) {
       el.remove();
     }

@@ -53,7 +53,7 @@ injectGlobal`
 }
 
 body {
-  ul[class*="Menu-Menu"] {
+  ul[class*="Menu-className"] {
     border: none;
 
     > li {
