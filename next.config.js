@@ -23,6 +23,10 @@ module.exports = withTypescript({
       use: [urlLoader("font/woff2")]
     });
 
+    config.node = {
+      fs: "empty"
+    };
+
     return config;
   }
 });
