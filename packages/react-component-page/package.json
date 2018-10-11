@@ -18,7 +18,7 @@
     "typescript": "^3.0.1"
   },
   "peerDependencies": {
-    "catalog": "^3.5.5",
+    "@catalog/core": "^4.0.0",
     "emotion": "^9.2.6",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
