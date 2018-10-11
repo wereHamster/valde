@@ -1,4 +1,4 @@
-import { SomeComponent } from "../example";
+import { SomeComponent } from "../module";
 
 export const SomeComponentPageProps = {
   module: "left-pad-react",
