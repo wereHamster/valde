@@ -1,6 +1,6 @@
 {
   "name": "@valde/icon-specimen",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "module": "lib/index.js",
   "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
   "license": "MIT",
