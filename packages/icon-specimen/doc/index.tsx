@@ -1,4 +1,4 @@
-import { IconSpecimen } from "../src/icon-specimen";
+import { IconSpecimen } from "../src/index";
 import { markdown } from "@catalog/core";
 
 export default {

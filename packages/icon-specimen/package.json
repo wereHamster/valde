@@ -1,7 +1,7 @@
 {
   "name": "@valde/icon-specimen",
   "version": "0.0.6",
-  "main": "lib/icon-specimen.js",
+  "module": "lib/index.js",
   "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
   "license": "MIT",
   "description": "IconSpecimen component for use in Catalog",
@@ -10,7 +10,7 @@
     "url": "https://github.com/wereHamster/valde.git"
   },
   "peerDependencies": {
-    "catalog": "^3.5.5",
+    "@catalog/core": "^4.0.0",
     "emotion": "^9.2.6",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",

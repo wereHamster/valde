@@ -1,3 +1,2 @@
-/doc
-/src
-/tsconfig.json
+*
+!lib/**/*.{js,d.ts}
