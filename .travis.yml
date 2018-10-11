@@ -17,7 +17,7 @@ deploy:
     script: script/publish --yes --canary
     skip_cleanup: true
     on:
-      branch: master
+      condition: -n "$TRAVIS_PULL_REQUEST"
 
   - provider: script
     script: script/publish --yes from-git
