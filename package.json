@@ -5,7 +5,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@catalog/core": "0.0.3",
+    "@catalog/core": "4.0.0",
     "@catalog/loader": "4.0.0",
     "@types/prettier": "^1.13.2",
     "@types/react": "^16.4.6",
