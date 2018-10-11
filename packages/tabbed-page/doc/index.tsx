@@ -1,4 +1,4 @@
-import { TabbedPage } from "../src/tabbed-page";
+import { TabbedPage } from "../src/index";
 import { markdown } from "@catalog/core";
 
 const pane1 = {

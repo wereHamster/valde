@@ -13,8 +13,14 @@ cache:
   - node_modules
 
 deploy:
-  provider: script
-  script: script/deploy-canary
-  skip_cleanup: true
-  on:
-    all_branches: true
+  - provider: script
+    script: script/publish --yes --canary
+    skip_cleanup: true
+    on:
+      condition: -n "$TRAVIS_PULL_REQUEST"
+
+  - provider: script
+    script: script/publish --yes from-git
+    skip_cleanup: true
+    on:
+      branch: master
