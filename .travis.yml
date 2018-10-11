@@ -23,4 +23,4 @@ deploy:
     script: script/publish --yes from-git
     skip_cleanup: true
     on:
-      tags: true
+      branch: master
