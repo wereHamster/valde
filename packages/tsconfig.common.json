@@ -4,8 +4,6 @@
     "declaration": true,
 
     "target": "es2018",
-    "lib": ["dom", "es2018"],
-    "module": "commonjs",
     "moduleResolution": "node",
     "jsx": "react",
 
