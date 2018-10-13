@@ -82,7 +82,34 @@ ${(
       fontWeight: 400,
       lineHeight: 1.1
     }}
-    fontWeights={[]}
+  />
+)}
+
+${(
+  <Font
+    name="keylineB"
+    fontType={tunaRegular}
+    sample="The quick brown fox jumps over the lazy dog"
+    cssProperties={{
+      fontFamily: "Tuna",
+      fontSize: "44px",
+      fontWeight: 400,
+      lineHeight: 1.1
+    }}
+  />
+)}
+
+${(
+  <Font
+    name="keylineC"
+    fontType={tunaRegular}
+    sample="The quick brown fox jumps over the lazy dog"
+    cssProperties={{
+      fontFamily: "Tuna",
+      fontSize: "32px",
+      fontWeight: 400,
+      lineHeight: 1.1
+    }}
   />
 )}
 
@@ -116,7 +143,6 @@ ${(
       fontWeight: 400,
       lineHeight: "1.3"
     }}
-    fontWeights={[100, 400, 700]}
   />
 )}
 
@@ -133,7 +159,6 @@ ${(
       letterSpacing: "3px",
       textTransform: "uppercase"
     }}
-    fontWeights={[]}
   />
 )}
 `;
