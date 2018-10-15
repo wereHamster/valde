@@ -14,7 +14,7 @@ export interface FontProps {
 }
 
 interface State {
-  selectedTab: "SAMPLE" | "DEFINITION" | "CSS";
+  selectedTab: "PANGRAM" | "SAMPLE" | "DEFINITION" | "CSS";
 }
 
 export class Font extends React.PureComponent<FontProps, State> {
@@ -23,7 +23,7 @@ export class Font extends React.PureComponent<FontProps, State> {
   };
 
   state: State = {
-    selectedTab: "SAMPLE"
+    selectedTab: "PANGRAM"
   };
 
   render() {
@@ -36,11 +36,18 @@ export class Font extends React.PureComponent<FontProps, State> {
     return (
       <Root>
         <Name theme={catalog.theme}>
-          <FontIcon />
-
           <div>{name}</div>
 
           <Tabs>
+            <Tab
+              theme={catalog.theme}
+              active={selectedTab === "PANGRAM"}
+              onClick={() => {
+                this.setState({ selectedTab: "PANGRAM" });
+              }}
+            >
+              Pangram
+            </Tab>
             <Tab
               theme={catalog.theme}
               active={selectedTab === "SAMPLE"}
@@ -72,6 +79,9 @@ export class Font extends React.PureComponent<FontProps, State> {
         </Name>
         <div>
           <div>
+            {selectedTab === "PANGRAM" && (
+              <Pangram style={{ ...cssProperties }}>The quick brown fox jumps over the lazy dog</Pangram>
+            )}
             {selectedTab === "SAMPLE" && <Sample style={{ ...cssProperties }}>{sample}</Sample>}
             {selectedTab === "DEFINITION" && (
               <Definition theme={catalog.theme}>
@@ -130,19 +140,6 @@ const Name = styled.div`
   align-items: baseline;
 
   margin-bottom: 4px;
-
-  position: relative;
-  & svg {
-    position: absolute;
-    left: -26px;
-    top: 5px;
-    width: 18px;
-    height: 18px;
-
-    color: #333;
-
-    display: flex;
-  }
 `;
 
 const Tabs = styled.div`
@@ -173,11 +170,11 @@ const Tab = styled.div`
   }
 `;
 
-const Sample = styled.div`
-  padding: 20px;
-  background: white;
-  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.1);
+const Pangram = styled.div`
+  white-space: nowrap;
+`;
 
+const Sample = styled.div`
   & > *:first-child {
     margin-top: 0;
   }
@@ -216,17 +213,3 @@ const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
   `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;
 
 const toKebabCase = (str: string) => str.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
-
-const FontIcon = () => (
-  <svg x="0" y="0" viewBox="0 0 512 512">
-    <path
-      fill="currentColor"
-      d="M450.783,207.165v14.042c-15.256-12.252-34.607-19.607-55.652-19.607c-49.099,0-89.043,39.945-89.043,89.043 s39.945,89.043,89.043,89.043c21.045,0,40.396-7.355,55.652-19.607v14.042h33.391V207.165H450.783z M395.13,346.295 c-30.687,0-55.652-24.966-55.652-55.652c0-30.688,24.966-55.652,55.652-55.652s55.652,24.966,55.652,55.652 C450.783,321.33,425.817,346.295,395.13,346.295z"
-    />
-    <path
-      fill="currentColor"
-      d="M166.957,65.534L31.18,374.121h36.479l46.526-105.739h105.543l46.526,105.739h36.479L166.957,65.534z M128.877,234.991 l38.079-86.545l38.079,86.545H128.877z"
-    />
-    <rect fill="currentColor" y="413.074" width="512" height="33.391" />
-  </svg>
-);

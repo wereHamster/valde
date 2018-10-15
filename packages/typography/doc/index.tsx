@@ -75,7 +75,7 @@ ${(
   <Font
     name="keylineA"
     fontType={tunaRegular}
-    sample="The quick brown fox jumps over the lazy dog"
+    sample="Data Explorer"
     cssProperties={{
       fontFamily: "Tuna",
       fontSize: "56px",
@@ -89,7 +89,7 @@ ${(
   <Font
     name="keylineB"
     fontType={tunaRegular}
-    sample="The quick brown fox jumps over the lazy dog"
+    sample="The data behind Prices and Earnings"
     cssProperties={{
       fontFamily: "Tuna",
       fontSize: "44px",
@@ -103,7 +103,7 @@ ${(
   <Font
     name="keylineC"
     fontType={tunaRegular}
-    sample="The quick brown fox jumps over the lazy dog"
+    sample="Cost of a dinner date or a party night around the world"
     cssProperties={{
       fontFamily: "Tuna",
       fontSize: "32px",
@@ -120,20 +120,18 @@ ${(
     sample={
       <>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
+          The first edition of Prices and Earnings came out in 1971 when electronic calculators and fax machines were
+          just about to enter the workplace. It was a printed black-and-white brochure, covered only 31 cities and was
+          used mainly to compare expat compensation packages.
         </p>
         <p>
-          Interdum varius sit amet mattis vulputate enim. Ut enim blandit volutpat maecenas volutpat. At in tellus
-          integer feugiat scelerisque varius morbi enim nunc. Quisque non tellus orci ac auctor augue. Posuere lorem
-          ipsum dolor sit amet consectetur adipiscing elit. Aliquam ut porttitor leo a diam sollicitudin tempor. Amet
-          justo donec enim diam vulputate ut pharetra sit. Id consectetur purus ut faucibus pulvinar. Elementum sagittis
-          vitae et leo duis ut diam. Ut placerat orci nulla pellentesque dignissim. Vel fringilla est ullamcorper eget
-          nulla. Nunc aliquet bibendum enim facilisis gravida neque convallis a. Odio aenean sed adipiscing diam donec
-          adipiscing tristique risus.
+          Fast-forward to the current smartphone era and this year's study covers 77 cities and has over 75,000 data
+          points for comparison. With research so large in scope and scale, and communication capabilities far beyond a
+          fax machine, it was time to bring Prices and Earnings out of print and into the fully digital world.
+        </p>
+        <p>
+          Explore the evolution of Prices and Earnings over the past 50 years and see how the 2018 edition helps you
+          learn more.
         </p>
       </>
     }
@@ -150,7 +148,7 @@ ${(
   <Font
     name="label"
     fontType={tunaRegular}
-    sample="Username"
+    sample="Next Story"
     cssProperties={{
       fontFamily: "Tuna",
       fontSize: "16px",
