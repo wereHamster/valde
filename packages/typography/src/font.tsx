@@ -37,9 +37,9 @@ export class Font extends React.PureComponent<FontProps, State> {
       <Root>
         <Name theme={catalog.theme}>
           <FontIcon />
-          {name}
-        </Name>
-        <div>
+
+          <div>{name}</div>
+
           <Tabs>
             <Tab
               theme={catalog.theme}
@@ -69,6 +69,8 @@ export class Font extends React.PureComponent<FontProps, State> {
               CSS
             </Tab>
           </Tabs>
+        </Name>
+        <div>
           <div>
             {selectedTab === "SAMPLE" && <Sample style={{ ...cssProperties }}>{sample}</Sample>}
             {selectedTab === "DEFINITION" && (
@@ -112,7 +114,7 @@ export class Font extends React.PureComponent<FontProps, State> {
 
 const Root = styled.div`
   flex-basis: 100%;
-  margin: 24px 0;
+  margin: 16px 0;
 `;
 
 const Name = styled.div`
@@ -121,14 +123,19 @@ const Name = styled.div`
   text-rendering: optimizeLegibility;
   color: ${(p: { theme: Theme }) => p.theme.brandColor};
   font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
-  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, 2)};
+  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, 1)};
   line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
+
+  display: flex;
+  align-items: baseline;
+
+  margin-bottom: 4px;
 
   position: relative;
   & svg {
     position: absolute;
     left: -26px;
-    top: 12px;
+    top: 5px;
     width: 18px;
     height: 18px;
 
@@ -140,9 +147,9 @@ const Name = styled.div`
 
 const Tabs = styled.div`
   display: flex;
-  margin-top: 12px;
-  background: #eeeeee;
-  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.1);
+  align-items: baseline;
+  margin-left: 8px;
+  margin-bottom: 4px;
 `;
 
 const Tab = styled.div`
@@ -151,18 +158,18 @@ const Tab = styled.div`
   text-rendering: optimizeLegibility;
   color: ${(p: { theme: Theme }) => p.theme.brandColor};
   font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
-  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, -1)};
+  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, -3)};
   line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
 
-  padding: 8px 12px;
-  background: ${(p: { theme: Theme; active: boolean }) => (p.active ? "white" : "transparent")};
+  padding: 0 6px;
+  color: ${(p: { theme: Theme; active: boolean }) => (p.active ? p.theme.brandColor : p.theme.brandColor + "88")};
 
   cursor: pointer;
 
   transition: all 0.16s;
 
   &:hover {
-    background: ${(p: { theme: Theme; active: boolean }) => (p.active ? "white" : "#FFFFFFAA")};
+    color: ${(p: { theme: Theme; active: boolean }) => (p.active ? p.theme.brandColor : p.theme.brandColor + "DD")};
   }
 `;
 
@@ -170,6 +177,13 @@ const Sample = styled.div`
   padding: 20px;
   background: white;
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.1);
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+  & > *:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const Definition = styled.div`
@@ -205,8 +219,14 @@ const toKebabCase = (str: string) => str.replace(/([a-z0-9])([A-Z])/g, "$1-$2").
 
 const FontIcon = () => (
   <svg x="0" y="0" viewBox="0 0 512 512">
-    <path fill="currentColor" d="M450.783,207.165v14.042c-15.256-12.252-34.607-19.607-55.652-19.607c-49.099,0-89.043,39.945-89.043,89.043 s39.945,89.043,89.043,89.043c21.045,0,40.396-7.355,55.652-19.607v14.042h33.391V207.165H450.783z M395.13,346.295 c-30.687,0-55.652-24.966-55.652-55.652c0-30.688,24.966-55.652,55.652-55.652s55.652,24.966,55.652,55.652 C450.783,321.33,425.817,346.295,395.13,346.295z" />
-    <path fill="currentColor" d="M166.957,65.534L31.18,374.121h36.479l46.526-105.739h105.543l46.526,105.739h36.479L166.957,65.534z M128.877,234.991 l38.079-86.545l38.079,86.545H128.877z" />
+    <path
+      fill="currentColor"
+      d="M450.783,207.165v14.042c-15.256-12.252-34.607-19.607-55.652-19.607c-49.099,0-89.043,39.945-89.043,89.043 s39.945,89.043,89.043,89.043c21.045,0,40.396-7.355,55.652-19.607v14.042h33.391V207.165H450.783z M395.13,346.295 c-30.687,0-55.652-24.966-55.652-55.652c0-30.688,24.966-55.652,55.652-55.652s55.652,24.966,55.652,55.652 C450.783,321.33,425.817,346.295,395.13,346.295z"
+    />
+    <path
+      fill="currentColor"
+      d="M166.957,65.534L31.18,374.121h36.479l46.526-105.739h105.543l46.526,105.739h36.479L166.957,65.534z M128.877,234.991 l38.079-86.545l38.079,86.545H128.877z"
+    />
     <rect fill="currentColor" y="413.074" width="512" height="33.391" />
   </svg>
 );
