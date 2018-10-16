@@ -51,25 +51,32 @@ const tunaBoldItalic: Cut = {
 
 const component = () => markdown`
 
-~~~image|span-6,plain
-src: /static/TunaIntro.png
-~~~
+## Constraints
+
+ * Styles based on CSS.
+ * For documentation, not exploration.
+
+## Terminology
+
+ * **Typeface:** The name of a whole family of fonts. Examples: _Helvetica Neue_, _Circular Pro_ etc.
+ * **Font:** Corresponds to a file that we store on our computers, and also to a \`@font-face\` definition in CSS. You will typically have \`<num weights> * 2\` of these in your project (normal + italic variant for each weight). Its definition includes the fallback (stack).
+ * **???:** The reusable building block that combines a _Font_ with a particular size, line height, and other typographic properties.
 
 # <Matrix>
 
-This component displays the different cuts, grouped by weight (ie. regular and italic on the same row).
+This component displays the different fonts, grouped by weight (ie. regular and italic on the same row).
 
 ${<Matrix cuts={[tunaLight, tunaRegular, tunaRegularItalic, tunaBoldItalic]} />}
 
 # <Fallback>
 
-The \`<Fallback>\` component is used to test the font-family stack. It overlays the fallback fonts over the first preference and shows how well the metrics match. The closer the two fonts are, the less page reflow the user will experience when the browser switches from the fallback font to the primary font.
+The \`<Fallback>\` component is used to test the font stack. It overlays the selected fallback font over the primary font to illustrate how well the metrics match. The closer the two fonts are, the less page reflow the user will experience.
 
 ${<Fallback cuts={[tunaLight, tunaRegular, tunaRegularItalic, tunaBoldItalic]} />}
 
-# <Font>
+# <?Unknown?>
 
-This component displays a single font. A font has a name, a sample text that is used to showcase the font, and CSS properties that define it.
+This component displays a single ???. It has a name, a sample text, and CSS properties that define it.
 
 ${(
   <Font
