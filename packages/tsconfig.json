@@ -3,6 +3,7 @@
   "references": [
     { "path": "icon-specimen" },
     { "path": "react-component-page" },
-    { "path": "tabbed-page" }
+    { "path": "tabbed-page" },
+    { "path": "typography" }
   ]
 }
