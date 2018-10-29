@@ -50,6 +50,7 @@ const tunaBoldItalic: FontFace = {
 };
 
 const component = () => markdown`
+![version](https://img.shields.io/npm/v/@valde/typography.svg)
 
 ## Constraints
 
