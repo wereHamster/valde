@@ -84,9 +84,7 @@ ${(
     fontFace={tunaRegular}
     sample="Data Explorer"
     cssProperties={{
-      fontFamily: "Tuna",
       fontSize: "56px",
-      fontWeight: 400,
       lineHeight: 1.1
     }}
   />
@@ -98,9 +96,7 @@ ${(
     fontFace={tunaRegular}
     sample="The data behind Prices and Earnings"
     cssProperties={{
-      fontFamily: "Tuna",
       fontSize: "44px",
-      fontWeight: 400,
       lineHeight: 1.1
     }}
   />
@@ -112,9 +108,7 @@ ${(
     fontFace={tunaRegular}
     sample="Cost of a dinner date or a party night around the world"
     cssProperties={{
-      fontFamily: "Tuna",
       fontSize: "32px",
-      fontWeight: 400,
       lineHeight: 1.1
     }}
   />
@@ -143,9 +137,7 @@ ${(
       </>
     }
     cssProperties={{
-      fontFamily: "Tuna",
       fontSize: "18px",
-      fontWeight: 400,
       lineHeight: "1.3"
     }}
   />
@@ -157,15 +149,60 @@ ${(
     fontFace={tunaRegular}
     sample="Next Story"
     cssProperties={{
-      fontFamily: "Tuna",
       fontSize: "16px",
-      fontWeight: 700,
       lineHeight: "1.3",
       letterSpacing: "3px",
       textTransform: "uppercase"
     }}
   />
 )}
+
+# Usage
+
+Underlying all the components that you've seen above are \`FontFace\` objects. Create one such object for each font face you want to use. Then pass all objects to the \`Matrix\` and \`Fallback\` components.
+
+~~~hint
+The definitions of the font faces and fonts are based on inline-CSS. That means you can't use media queries to style your fonts.
+~~~
+
+~~~code|lang-js
+import { FontFace } from "@valde/typography";
+
+const tunaLight: FontFace = {
+  name: "Tuna Light",
+
+  fontFamily: "Tuna",
+  fallback: ["Arial", "serif"],
+
+  cssProperties: {
+    fontWeight: 100,
+    fontStyle: "normal"
+  }
+};
+
+// …
+
+import { Matrix } from "@valde/typography";
+<Matrix fontFaces={[tunaLight, tunaRegular, tunaRegularItalic, tunaBoldItalic]} />
+
+import { Fallback } from "@valde/typography";
+<Fallback fontFaces={[tunaLight, tunaRegular, tunaRegularItalic, tunaBoldItalic]} />
+~~~
+
+And to display a single font use the \`Font\` component. You should omit the \`fontFamily\`, \`fontWeight\`, and \`fontStyle\` from the \`cssProperties\` as those are defined as part of the \`fontFace\`. Only add \`fontSize\`, \`lineHeight\`, \`letterSpacing\`, \`fontVariant\` etc.
+
+~~~code|lang-js
+import { Font } from "@valde/typography";
+<Font
+  name="keylineA"
+  fontFace={tunaRegular}
+  sample="Data Explorer"
+  cssProperties={{
+    fontSize: "56px",
+    lineHeight: 1.1
+  }}
+/>
+~~~
 `;
 
 export default {

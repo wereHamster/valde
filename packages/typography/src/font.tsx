@@ -80,9 +80,15 @@ export class Font extends React.PureComponent<FontProps, State> {
         <div>
           <div>
             {selectedTab === "PANGRAM" && (
-              <Pangram style={{ ...cssProperties }}>The quick brown fox jumps over the lazy dog</Pangram>
+              <Pangram style={{ fontFamily: fontFace.fontFamily, ...fontFace.cssProperties, ...cssProperties }}>
+                The quick brown fox jumps over the lazy dog
+              </Pangram>
             )}
-            {selectedTab === "SAMPLE" && <Sample style={{ ...cssProperties }}>{sample}</Sample>}
+            {selectedTab === "SAMPLE" && (
+              <Sample style={{ fontFamily: fontFace.fontFamily, ...fontFace.cssProperties, ...cssProperties }}>
+                {sample}
+              </Sample>
+            )}
             {selectedTab === "DEFINITION" && (
               <Definition theme={catalog.theme}>
                 <dl>
