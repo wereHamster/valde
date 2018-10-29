@@ -1,9 +1,9 @@
 import * as React from "react";
 import { FontFamilyProperty } from "csstype";
 
-export interface Cut {
+export interface FontFace {
   /**
-   * The name of the font cut as it's published by the foundry.
+   * The name of the typeface as it's published by the foundry.
    *
    * Example: "Circular Pro Medium Italic"
    */

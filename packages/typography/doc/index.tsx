@@ -1,7 +1,7 @@
-import { Cut, Matrix, Fallback, Font } from "../src/index";
+import { FontFace, Matrix, Fallback, Font } from "../src/index";
 import { markdown } from "@catalog/core";
 
-const tunaLight: Cut = {
+const tunaLight: FontFace = {
   name: "Tuna Light",
 
   fontFamily: "Tuna",
@@ -13,7 +13,7 @@ const tunaLight: Cut = {
   }
 };
 
-const tunaRegular: Cut = {
+const tunaRegular: FontFace = {
   name: "Tuna Regular",
 
   fontFamily: "Tuna",
@@ -25,7 +25,7 @@ const tunaRegular: Cut = {
   }
 };
 
-const tunaRegularItalic: Cut = {
+const tunaRegularItalic: FontFace = {
   name: "Tuna Regular Italic",
 
   fontFamily: "Tuna",
@@ -37,7 +37,7 @@ const tunaRegularItalic: Cut = {
   }
 };
 
-const tunaBoldItalic: Cut = {
+const tunaBoldItalic: FontFace = {
   name: "Tuna Bold",
 
   fontFamily: "Tuna",
@@ -58,30 +58,30 @@ const component = () => markdown`
 
 ## Terminology
 
- * **Typeface:** The name of a whole family of fonts. Examples: _Helvetica Neue_, _Circular Pro_ etc.
- * **Font:** Corresponds to a file that we store on our computers, and also to a \`@font-face\` definition in CSS. You will typically have \`<num weights> * 2\` of these in your project (normal + italic variant for each weight). Its definition includes the fallback (stack).
- * **???:** The reusable building block that combines a _Font_ with a particular size, line height, and other typographic properties.
+ * **Typeface:** The name of a whole family of fonts. Examples: _Helvetica Neue_, _Circular Pro_.
+ * **Fontface:** Corresponds to a file that we store on our computers, and also to a \`@font-face\` definition in CSS. You will typically have \`<num weights> * 2\` of these in your project (normal + italic variant for each weight). Its definition includes the fallback (stack). Examples: _Circular Pro Medium Italic_, _Neue Helvetica Pro 36 Thin Italic_.
+ * **Font:** The reusable building block that combines a _Fontface_ with a particular size, line height, and other typographic properties.
 
 # <Matrix>
 
-This component displays the different fonts, grouped by weight (ie. regular and italic on the same row).
+This component displays the different font faces, grouped by weight (ie. regular and italic on the same row).
 
-${<Matrix cuts={[tunaLight, tunaRegular, tunaRegularItalic, tunaBoldItalic]} />}
+${<Matrix fontFaces={[tunaLight, tunaRegular, tunaRegularItalic, tunaBoldItalic]} />}
 
 # <Fallback>
 
 The \`<Fallback>\` component is used to test the font stack. It overlays the selected fallback font over the primary font to illustrate how well the metrics match. The closer the two fonts are, the less page reflow the user will experience.
 
-${<Fallback cuts={[tunaLight, tunaRegular, tunaRegularItalic, tunaBoldItalic]} />}
+${<Fallback fontFaces={[tunaLight, tunaRegular, tunaRegularItalic, tunaBoldItalic]} />}
 
-# <?Unknown?>
+# <Font>
 
-This component displays a single ???. It has a name, a sample text, and CSS properties that define it.
+This component displays a single Font. It has a name, a sample text, and CSS properties that define it.
 
 ${(
   <Font
     name="keylineA"
-    fontType={tunaRegular}
+    fontFace={tunaRegular}
     sample="Data Explorer"
     cssProperties={{
       fontFamily: "Tuna",
@@ -95,7 +95,7 @@ ${(
 ${(
   <Font
     name="keylineB"
-    fontType={tunaRegular}
+    fontFace={tunaRegular}
     sample="The data behind Prices and Earnings"
     cssProperties={{
       fontFamily: "Tuna",
@@ -109,7 +109,7 @@ ${(
 ${(
   <Font
     name="keylineC"
-    fontType={tunaRegular}
+    fontFace={tunaRegular}
     sample="Cost of a dinner date or a party night around the world"
     cssProperties={{
       fontFamily: "Tuna",
@@ -123,7 +123,7 @@ ${(
 ${(
   <Font
     name="body"
-    fontType={tunaRegular}
+    fontFace={tunaRegular}
     sample={
       <>
         <p>
@@ -154,7 +154,7 @@ ${(
 ${(
   <Font
     name="label"
-    fontType={tunaRegular}
+    fontFace={tunaRegular}
     sample="Next Story"
     cssProperties={{
       fontFamily: "Tuna",

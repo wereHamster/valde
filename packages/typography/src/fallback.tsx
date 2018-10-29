@@ -2,14 +2,14 @@ import * as PropTypes from "prop-types";
 import * as React from "react";
 import styled from "react-emotion";
 import { Theme } from "@catalog/core";
-import { Cut } from "./types";
+import { FontFace } from "./types";
 
 export interface FallbackProps {
-  cuts: Array<Cut>;
+  fontFaces: Array<FontFace>;
 }
 
 interface State {
-  cut: Cut;
+  cut: FontFace;
   activeFallback: undefined | string;
 }
 
@@ -19,11 +19,11 @@ export class Fallback extends React.PureComponent<FallbackProps, State> {
   };
 
   state: State = {
-    cut: this.props.cuts[0],
+    cut: this.props.fontFaces[0],
     activeFallback: undefined
   };
 
-  selectCut = (cut: Cut) => () => {
+  selectCut = (cut: FontFace) => () => {
     this.setState({ cut });
   };
 
@@ -37,14 +37,14 @@ export class Fallback extends React.PureComponent<FallbackProps, State> {
 
   render() {
     const { catalog } = this.context;
-    const { cuts } = this.props;
+    const { fontFaces } = this.props;
     const { cut, activeFallback } = this.state;
 
     return (
       <Root theme={catalog.theme}>
         <Cuts theme={catalog.theme}>
           <strong>Cut:</strong>{" "}
-          {cuts.map((c, i) => (
+          {fontFaces.map((c, i) => (
             <CutOption key={i} isActive={c === cut} onClick={this.selectCut(c)}>
               {c.name}
             </CutOption>

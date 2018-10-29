@@ -2,11 +2,11 @@ import * as PropTypes from "prop-types";
 import * as React from "react";
 import styled from "react-emotion";
 import { Theme } from "@catalog/core";
-import { Cut } from "./types";
+import { FontFace } from "./types";
 
 export interface FontProps {
   name: string;
-  fontType: Cut;
+  fontFace: FontFace;
 
   sample: React.ReactNode;
 
@@ -28,7 +28,7 @@ export class Font extends React.PureComponent<FontProps, State> {
 
   render() {
     const { catalog } = this.context;
-    const { name, fontType, sample, cssProperties } = this.props;
+    const { name, fontFace, sample, cssProperties } = this.props;
     const { selectedTab } = this.state;
 
     const { fontSize, lineHeight } = cssProperties;
@@ -88,7 +88,7 @@ export class Font extends React.PureComponent<FontProps, State> {
                 <dl>
                   <div>
                     <dt>Font:</dt>
-                    <dd>{fontType.name}</dd>
+                    <dd>{fontFace.name}</dd>
                   </div>
                   <div>
                     <dt>Size:</dt>

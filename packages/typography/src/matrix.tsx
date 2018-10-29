@@ -2,10 +2,10 @@ import * as PropTypes from "prop-types";
 import * as React from "react";
 import styled from "react-emotion";
 import { Theme } from "@catalog/core";
-import { Cut } from "./types";
+import { FontFace } from "./types";
 
 export interface MatrixProps {
-  cuts: Array<Cut>;
+  fontFaces: Array<FontFace>;
 }
 
 export class Matrix extends React.PureComponent<MatrixProps> {
@@ -15,16 +15,16 @@ export class Matrix extends React.PureComponent<MatrixProps> {
 
   render() {
     const { catalog } = this.context;
-    const { cuts } = this.props;
+    const { fontFaces } = this.props;
 
-    const sortedWeights = Array.from(new Set(cuts.map(cut => cut.cssProperties.fontWeight))).sort();
+    const sortedWeights = Array.from(new Set(fontFaces.map(cut => cut.cssProperties.fontWeight))).sort();
     const styles = ["normal", "italic"];
 
     return (
       <Root theme={catalog.theme}>
         {sortedWeights.map(weight => {
           return styles.map(style => {
-            const cut = cuts.find(
+            const cut = fontFaces.find(
               cut => cut.cssProperties.fontWeight === weight && cut.cssProperties.fontStyle === style
             );
             if (cut) {
