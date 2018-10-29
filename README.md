@@ -10,4 +10,6 @@ Do you want to make changes or create a new package in the **@valde** namespace?
 
 ### Publishing
 
-Use `lerna version` to bump the versions in packages that have changed, then push the commits and tags to GitHub. The packages will be automatically published to npmjs.com by [travis](https://travis-ci.org/wereHamster/valde).
+The website, including pull requests, are automatically deployed through [now](https://zeit.co/now). Note that old deployments linger around and need to be cleaned up manually (use `now rm valde --safe --yes`).
+
+The packages are automatically published to npmjs.com when you push tags to GitHub. Use `lerna version` to create these tags. The packages are then published by [travis](https://travis-ci.org/wereHamster/valde)
