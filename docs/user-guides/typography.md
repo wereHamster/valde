@@ -1,9 +1,5 @@
 > This document outlines how to build a beautiful typography page. It aims to provide a guideline what decisions need to be taken when deciding the typography of a project and how to document these decisions. The typography page should also be used by developers to document the fonts – reusable blocks of material that can be used to style components.
 
-```hint
-To make it easier to build such a page, new Catalog components are required.
-```
-
 # Outline
 
 Here is the rough structure
