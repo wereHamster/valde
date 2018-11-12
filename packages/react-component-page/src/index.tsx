@@ -3,8 +3,9 @@ import * as ReactDOM from "react-dom";
 import styled from "react-emotion";
 import { Page, CodeSpecimen } from "@catalog/core";
 
+/* tslint:disable-next-line */
 export const __catalogPreview__ = (component: React.ComponentClass<any>, Preview: React.ComponentType) => {
-  (component as any)["__catalogPreview__"] = Preview;
+  (component as any).__catalogPreview__ = Preview;
 };
 
 export interface Field {

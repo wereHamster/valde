@@ -14,6 +14,8 @@ cache:
 
 matrix:
   include:
+    - name: "Lint"
+      script: ./node_modules/.bin/tslint --project packages/tsconfig.tslint.json
     - name: "TypeScript"
       script: ./node_modules/.bin/tsc --build packages
 

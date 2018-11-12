@@ -39,7 +39,6 @@ const main = async () => {
   const prelude = [`import { ${components.map(c => c.name).join(", ")} } from "../${basename}";`].join("\n");
 
   const toPageCode = (component: any): string => {
-    console.log(component);
     return [
       `export const ${component.name}PageProps = {`,
       `  module: "${module}",`,
@@ -70,6 +69,7 @@ const main = async () => {
         try {
           components.push(serializeClass(node, symbol));
         } catch (e) {
+          /* tslint:disable-next-line */
           console.warn(`Failed to serialize component ${symbol.getEscapedName()}: ${e.message}`);
         }
       }
@@ -117,6 +117,7 @@ main().then(
     process.exit(0);
   },
   err => {
+    /* tslint:disable-next-line */
     console.error(err);
     process.exit(1);
   }

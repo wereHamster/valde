@@ -6,6 +6,7 @@ import posed from "react-pose";
 import Measure, { MeasuredComponentProps, BoundingRect } from "react-measure";
 import { markdown } from "@catalog/core";
 
+/* tslint:disable-next-line */
 injectGlobal`
 div[class*="AppLayout"] {
   z-index: unset;

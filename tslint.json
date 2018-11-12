@@ -1,0 +1,12 @@
+{
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "rules": {
+    "array-type": false,
+    "interface-name": [false],
+    "max-classes-per-file": [false, 1],
+    "member-access": false,
+    "no-bitwise": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": [false]
+  }
+}

@@ -12,7 +12,7 @@ export class Matrix extends React.PureComponent<MatrixProps> {
   static contextTypes = {
     catalog: PropTypes.object.isRequired
   };
-  context!: { catalog: any }
+  context!: { catalog: any };
 
   render() {
     const { catalog } = this.context;
@@ -26,7 +26,7 @@ export class Matrix extends React.PureComponent<MatrixProps> {
         {sortedWeights.map(weight => {
           return styles.map(style => {
             const cut = fontFaces.find(
-              cut => cut.cssProperties.fontWeight === weight && cut.cssProperties.fontStyle === style
+              x => x.cssProperties.fontWeight === weight && x.cssProperties.fontStyle === style
             );
             if (cut) {
               return <div style={{ ...cut.cssProperties, fontFamily: cut.fontFamily }}>{cut.name}</div>;
