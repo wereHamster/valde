@@ -5,6 +5,7 @@ import styled, { injectGlobal } from "react-emotion";
 import posed from "react-pose";
 import Measure, { MeasuredComponentProps, BoundingRect } from "react-measure";
 import { markdown } from "@catalog/core";
+import { Size, Descriptor, Instance } from "./types";
 
 /* tslint:disable-next-line */
 injectGlobal`
@@ -14,22 +15,6 @@ div[class*="AppLayout"] {
 `;
 
 const kRootSize = 100;
-
-/**
- * The size of an icon. It's either responsive (adapts to EM), or has
- * a fixed size.
- */
-export type Size = "responsive" | number;
-
-export interface Instance {
-  size: Size;
-  Component: React.ReactType;
-}
-
-export interface Descriptor {
-  name: string;
-  instances: Instance[];
-}
 
 export interface Props {
   allSizes: Size[];
