@@ -94,7 +94,7 @@ const Preview = styled(
   })
 )``;
 
-class IconSpecimenImpl extends React.PureComponent<Props, State> {
+export class Icon extends React.PureComponent<Props, State> {
   static contextTypes = {
     catalog: PropTypes.object.isRequired
   };
@@ -132,8 +132,6 @@ class IconSpecimenImpl extends React.PureComponent<Props, State> {
   }
 }
 
-export const IconSpecimen: React.ComponentType<Props> = IconSpecimenImpl;
-
 class Inner extends React.PureComponent<Props & State & BoundingRect & { toggle(): void }> {
   render() {
     const { isOpen, activeInstance, width, height, toggle } = this.props;
@@ -144,7 +142,7 @@ class Inner extends React.PureComponent<Props & State & BoundingRect & { toggle(
 
         <Preview>
           {!isOpen && (
-            <Icon
+            <IconCanvas
               width={width}
               height={height}
               size={activeInstance.size === "responsive" ? 32 : activeInstance.size}
@@ -227,7 +225,7 @@ class Detail extends React.PureComponent<Props & State & { toggle(): void }, { a
         <div style={{ display: "flex", justifyContent: "center" }}>
           {instances.map(({ size, Component }, i) => (
             <CanvasBoxChild key={i}>
-              <Icon
+              <IconCanvas
                 width={160}
                 height={160}
                 size={size === "responsive" ? 60 : size}
@@ -331,7 +329,7 @@ const Root = styled("div")`
   }
 `;
 
-interface IconProps {
+interface IconCanvasProps {
   width: number;
   height: number;
 
@@ -341,7 +339,7 @@ interface IconProps {
   highlighted?: boolean;
 }
 
-class Icon extends React.PureComponent<IconProps & React.HTMLAttributes<HTMLDivElement>> {
+class IconCanvas extends React.PureComponent<IconCanvasProps & React.HTMLAttributes<HTMLDivElement>> {
   render() {
     const { width, height, size, Component, ...props } = this.props;
 

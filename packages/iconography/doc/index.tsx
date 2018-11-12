@@ -1,13 +1,13 @@
-import { IconSpecimen } from "../src/index";
+import { Icon } from "../src/index";
 import { markdown } from "@catalog/core";
 
 export default {
-  title: "icon-specimen",
-  path: "/packages/icon-specimen",
+  title: "iconography",
+  path: "/packages/iconography",
   component: () => markdown`
-![version](https://img.shields.io/npm/v/@valde/icon-specimen.svg)
+![version](https://img.shields.io/npm/v/@valde/iconography.svg)
 
-The \`IconSpecimen\` component displays one named icon and also provides a detail view that shows more details (eg. multiple sizes) of that icon.
+The \`Icon\` component displays one named icon and also provides a detail view that shows more details (eg. multiple sizes) of that icon.
 
 This component is best used in a grid, to show a whole range if icons next to each other.
 
@@ -15,7 +15,7 @@ This component is best used in a grid, to show a whole range if icons next to ea
 
 ${(
     <div style={{ marginTop: 24, display: "flex" }}>
-      <IconSpecimen
+      <Icon
         allSizes={[]}
         descriptor={{
           name: "check",
@@ -47,7 +47,7 @@ ${(
           ]
         }}
       />
-      <IconSpecimen
+      <Icon
         allSizes={[]}
         descriptor={{
           name: "really-looong-name",
@@ -71,7 +71,7 @@ ${(
           ]
         }}
       />
-      <IconSpecimen
+      <Icon
         allSizes={[]}
         descriptor={{
           name: "responsive",
@@ -95,7 +95,7 @@ ${(
           ]
         }}
       />
-      <IconSpecimen
+      <Icon
         allSizes={[]}
         descriptor={{
           name: "combobox-search",
@@ -114,7 +114,7 @@ ${(
           ]
         }}
       />
-      <IconSpecimen
+      <Icon
         allSizes={[]}
         descriptor={{
           name: "angle-back",
@@ -139,9 +139,9 @@ ${(
 # Usage
 
 ~~~code|lang-js
-import { IconSpecimen } from "@valde/icon-specimen";
+import { Icon } from "@valde/iconography";
 
-<IconSpecimen
+<Icon
   allSizes={[16, 24]}
   descriptor={{
     name: "angle-back",

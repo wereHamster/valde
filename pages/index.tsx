@@ -171,7 +171,7 @@ const config = {
     {
       title: "Packages",
       pages: [
-        require("../packages/icon-specimen/doc/index").default,
+        require("../packages/iconography/doc/index").default,
         require("../packages/react-component-page/doc/index").default,
         require("../packages/tabbed-page/doc/index").default,
         require("../packages/typography/doc/index").default
