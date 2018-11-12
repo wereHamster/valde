@@ -98,7 +98,7 @@ class IconSpecimenImpl extends React.PureComponent<Props, State> {
   static contextTypes = {
     catalog: PropTypes.object.isRequired
   };
-  context!: { catalog: any }
+  context!: { catalog: any };
 
   state: State = {
     isOpen: false,
@@ -162,7 +162,7 @@ class Detail extends React.PureComponent<Props & State & { toggle(): void }, { a
   static contextTypes = {
     catalog: PropTypes.object.isRequired
   };
-  context!: { catalog: any }
+  context!: { catalog: any };
 
   state = {
     activeInstance: this.props.descriptor.instances[0]
@@ -297,7 +297,7 @@ const CanvasContainer = styled("div")`
   z-index: 99900;
 `;
 
-const Canvas = styled("div")`
+const Canvas = styled("div")<{ highlighted?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -305,8 +305,7 @@ const Canvas = styled("div")`
   transition: box-shadow 0.2s;
   cursor: pointer;
 
-  box-shadow: ${({ highlighted }: { highlighted?: boolean }) =>
-    highlighted ? "0 0 6px 2px rgba(0, 0, 0, 0.1)" : "0 0 1px 0 rgba(0, 0, 0, 0.1)"};
+  box-shadow: ${p => (p.highlighted ? "0 0 6px 2px rgba(0, 0, 0, 0.1)" : "0 0 1px 0 rgba(0, 0, 0, 0.1)")};
 
   &:hover {
     box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1);
@@ -410,21 +409,21 @@ class Grid extends React.PureComponent<{ size: number }> {
   }
 }
 
-const Name = styled("div")`
+const Name = styled("div")<{ theme: Theme }>`
   font-style: normal;
   font-weight: 400;
   text-rendering: optimizeLegibility;
-  color: ${(p: { theme: Theme }) => p.theme.textColor};
-  font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
-  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, -1)};
-  line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
+  color: ${p => p.theme.textColor};
+  font-family: ${p => p.theme.fontHeading};
+  font-size: ${p => getFontSize(p.theme, -1)};
+  line-height: ${p => p.theme.msRatio};
   margin: 6px 0 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
 
-const DetailHeader = styled("div")`
+const DetailHeader = styled("div")<{ theme: Theme }>`
   height: 179px;
   align-self: stretch;
   padding: 0px 0px 21px 42px;
@@ -432,24 +431,24 @@ const DetailHeader = styled("div")`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  background: ${(p: { theme: Theme }) => p.theme.brandColor};
+  background: ${p => p.theme.brandColor};
   margin: 0px;
 
   & div:first-child {
     font-style: normal;
     font-weight: 400;
     text-rendering: optimizeLegibility;
-    font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
-    font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, 1)};
-    line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
+    font-family: ${p => p.theme.fontHeading};
+    font-size: ${p => getFontSize(p.theme, 1)};
+    line-height: ${p => p.theme.msRatio};
     color: white;
     opacity: 0.6;
   }
 
   & div:last-child {
-    font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
-    font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, 4)};
-    line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
+    font-family: ${p => p.theme.fontHeading};
+    font-size: ${p => getFontSize(p.theme, 4)};
+    line-height: ${p => p.theme.msRatio};
     color: white;
     margin: 0;
   }
