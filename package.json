@@ -29,7 +29,7 @@
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.6",
     "react-measure": "^2.0.2",
-    "react-pose": "^3.0.0",
+    "react-pose": "^4.0.1",
     "typescript": "^3.0.1",
     "url-loader": "^1.1.1"
   }
