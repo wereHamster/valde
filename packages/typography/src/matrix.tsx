@@ -39,7 +39,7 @@ export class Matrix extends React.PureComponent<MatrixProps> {
   }
 }
 
-const Root = styled.div`
+const Root = styled("div")<{ theme: Theme }>`
   flex-basis: 100%;
   margin: 24px 0;
 
@@ -48,23 +48,23 @@ const Root = styled.div`
   margin: 12px 0;
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.1);
 
-  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, 3)};
+  font-size: ${p => getFontSize(p.theme, 3)};
   line-height: 1.7;
 
   display: grid;
   grid-template-columns: 1fr 1fr;
 `;
 
-const Unused = styled.div`
+const Unused = styled("div")<{ theme: Theme }>`
   display: flex;
   align-items: center;
   font-style: normal;
   font-weight: 400;
   text-rendering: optimizeLegibility;
-  color: ${(p: { theme: Theme }) => p.theme.textColor};
-  font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
-  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, -4)};
-  line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
+  color: ${p => p.theme.textColor};
+  font-family: ${p => p.theme.fontHeading};
+  font-size: ${p => getFontSize(p.theme, -4)};
+  line-height: ${p => p.theme.msRatio};
   opacity: 0.5;
 `;
 

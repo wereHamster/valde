@@ -128,19 +128,19 @@ export class Font extends React.PureComponent<FontProps, State> {
   }
 }
 
-const Root = styled.div`
+const Root = styled("div")`
   flex-basis: 100%;
   margin: 16px 0;
 `;
 
-const Name = styled.div`
+const Name = styled("div")<{ theme: Theme }>`
   font-style: normal;
   font-weight: 400;
   text-rendering: optimizeLegibility;
-  color: ${(p: { theme: Theme }) => p.theme.brandColor};
-  font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
-  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, 1)};
-  line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
+  color: ${p => p.theme.brandColor};
+  font-family: ${p => p.theme.fontHeading};
+  font-size: ${p => getFontSize(p.theme, 1)};
+  line-height: ${p => p.theme.msRatio};
 
   display: flex;
   align-items: baseline;
@@ -148,39 +148,39 @@ const Name = styled.div`
   margin-bottom: 4px;
 `;
 
-const Tabs = styled.div`
+const Tabs = styled("div")`
   display: flex;
   align-items: baseline;
   margin-left: 8px;
   margin-bottom: 4px;
 `;
 
-const Tab = styled.div`
+const Tab = styled("div")<{ theme: Theme; active: boolean }>`
   font-style: normal;
   font-weight: 400;
   text-rendering: optimizeLegibility;
-  color: ${(p: { theme: Theme }) => p.theme.brandColor};
-  font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
-  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, -3)};
-  line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
+  color: ${p => p.theme.brandColor};
+  font-family: ${p => p.theme.fontHeading};
+  font-size: ${p => getFontSize(p.theme, -3)};
+  line-height: ${p => p.theme.msRatio};
 
   padding: 0 6px;
-  color: ${(p: { theme: Theme; active: boolean }) => (p.active ? p.theme.brandColor : p.theme.brandColor + "88")};
+  color: ${p => (p.active ? p.theme.brandColor : p.theme.brandColor + "88")};
 
   cursor: pointer;
 
   transition: all 0.16s;
 
   &:hover {
-    color: ${(p: { theme: Theme; active: boolean }) => (p.active ? p.theme.brandColor : p.theme.brandColor + "DD")};
+    color: ${p => (p.active ? p.theme.brandColor : p.theme.brandColor + "DD")};
   }
 `;
 
-const Pangram = styled.div`
+const Pangram = styled("div")`
   white-space: nowrap;
 `;
 
-const Sample = styled.div`
+const Sample = styled("div")`
   & > *:first-child {
     margin-top: 0;
   }
@@ -189,14 +189,14 @@ const Sample = styled.div`
   }
 `;
 
-const Definition = styled.div`
+const Definition = styled("div")<{ theme: Theme }>`
   font-style: normal;
   font-weight: 400;
   text-rendering: optimizeLegibility;
-  color: ${(p: { theme: Theme }) => p.theme.textColor + "AA"};
-  font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
-  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, 0)};
-  line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
+  color: ${p => p.theme.textColor + "AA"};
+  font-family: ${p => p.theme.fontHeading};
+  font-size: ${p => getFontSize(p.theme, 0)};
+  line-height: ${p => p.theme.msRatio};
   line-height: 1.5;
   padding: 20px;
   background: white;
@@ -211,7 +211,7 @@ const Definition = styled.div`
   dd {
     display: inline-block;
     margin-left: 8px;
-    color: ${(p: { theme: Theme }) => p.theme.textColor};
+    color: ${p => p.theme.textColor};
   }
 `;
 

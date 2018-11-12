@@ -101,76 +101,76 @@ const sample = (
   </>
 );
 
-const Root = styled.div`
+const Root = styled("div")`
   flex-basis: 100%;
   margin: 24px 0;
 `;
 
-const Cuts = styled.div`
+const Cuts = styled("div")<{ theme: Theme }>`
   display: flex;
-  color: ${(p: { theme: Theme }) => p.theme.textColor};
-  font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
-  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, 0)};
-  line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
+  color: ${p => p.theme.textColor};
+  font-family: ${p => p.theme.fontHeading};
+  font-size: ${p => getFontSize(p.theme, 0)};
+  line-height: ${p => p.theme.msRatio};
 `;
 
-const CutOption = styled.div`
+const CutOption = styled("div")<{ isActive: boolean }>`
   font-style: normal;
   font-weight: 400;
   text-rendering: optimizeLegibility;
-  opacity: ${(p: { isActive: boolean }) => (p.isActive ? 1 : 0.6)};
+  opacity: ${p => (p.isActive ? 1 : 0.6)};
   margin-left: 12px;
   cursor: pointer;
   user-select: none;
-  text-decoration: ${(p: { isActive: boolean }) => (p.isActive ? "underline" : "none")};
+  text-decoration: ${p => (p.isActive ? "underline" : "none")};
 
   &:hover {
     opacity: 1;
   }
 `;
 
-const Stack = styled.div`
+const Stack = styled("div")<{ theme: Theme }>`
   display: flex;
-  color: ${(p: { theme: Theme }) => p.theme.textColor};
-  font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
-  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, 0)};
-  line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
+  color: ${p => p.theme.textColor};
+  font-family: ${p => p.theme.fontHeading};
+  font-size: ${p => getFontSize(p.theme, 0)};
+  line-height: ${p => p.theme.msRatio};
   margin: 8px 0;
 `;
 
-const Option = styled.div`
+const Option = styled("div")<{ isActive: boolean }>`
   font-style: normal;
   font-weight: 400;
   text-rendering: optimizeLegibility;
-  opacity: ${(p: { isActive: boolean }) => (p.isActive ? 1 : 0.6)};
+  opacity: ${p => (p.isActive ? 1 : 0.6)};
   margin-left: 8px;
   cursor: pointer;
   user-select: none;
-  text-decoration: ${(p: { isActive: boolean }) => (p.isActive ? "underline" : "none")};
+  text-decoration: ${p => (p.isActive ? "underline" : "none")};
 
   &:hover {
     opacity: 1;
   }
 `;
 
-const SampleContainer = styled.div`
+const SampleContainer = styled("div")`
   padding: 15px 30px;
   background: white;
   margin: 12px 0;
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.1);
 `;
 
-const Sample = styled.div`
+const Sample = styled("div")<{ theme: Theme }>`
   position: relative;
-  color: ${(p: { theme: Theme }) => p.theme.textColor};
-  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, 1)};
+  color: ${p => p.theme.textColor};
+  font-size: ${p => getFontSize(p.theme, 1)};
   line-height: 1.7;
 
   display: flex;
   flex-direction: column;
 `;
 
-const FallbackOverlay = styled.div`
+const FallbackOverlay = styled("div")`
   position: absolute;
   top: 0;
   left: 0;
