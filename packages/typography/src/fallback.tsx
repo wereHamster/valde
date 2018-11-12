@@ -17,6 +17,7 @@ export class Fallback extends React.PureComponent<FallbackProps, State> {
   static contextTypes = {
     catalog: PropTypes.object.isRequired
   };
+  context!: { catalog: any }
 
   state: State = {
     cut: this.props.fontFaces[0],

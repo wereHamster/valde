@@ -12,6 +12,7 @@ export class Matrix extends React.PureComponent<MatrixProps> {
   static contextTypes = {
     catalog: PropTypes.object.isRequired
   };
+  context!: { catalog: any }
 
   render() {
     const { catalog } = this.context;

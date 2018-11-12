@@ -21,6 +21,7 @@ export class TabbedPage extends React.PureComponent<Props, State> {
   static contextTypes = {
     catalog: PropTypes.object.isRequired
   };
+  context!: { catalog: any }
 
   state: State = {
     activePaneIndex: this.props.initialPaneIndex || 0

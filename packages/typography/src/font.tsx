@@ -21,6 +21,7 @@ export class Font extends React.PureComponent<FontProps, State> {
   static contextTypes = {
     catalog: PropTypes.object.isRequired
   };
+  context!: { catalog: any }
 
   state: State = {
     selectedTab: "PANGRAM"

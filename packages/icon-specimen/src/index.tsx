@@ -97,6 +97,7 @@ class IconSpecimenImpl extends React.PureComponent<Props, State> {
   static contextTypes = {
     catalog: PropTypes.object.isRequired
   };
+  context!: { catalog: any }
 
   state: State = {
     isOpen: false,
@@ -160,6 +161,7 @@ class Detail extends React.PureComponent<Props & State & { toggle(): void }, { a
   static contextTypes = {
     catalog: PropTypes.object.isRequired
   };
+  context!: { catalog: any }
 
   state = {
     activeInstance: this.props.descriptor.instances[0]
