@@ -122,7 +122,7 @@ This component is best used in a grid, to show a whole range if icons next to ea
 ### Example
 
 ${(
-    <div style={{ marginTop: 24 }}>
+    <div style={{ flexBasis: "100%", marginTop: 24 }}>
       <Icon allSizes={[]} descriptor={descriptors[0]} />
     </div>
   )}
@@ -154,12 +154,12 @@ import { Icon } from "@valde/iconography";
 
 # Icons
 
-The \`Icons\` component displays a number of icons in a grid.
+The \`Icons\` component displays a number of icons in a grid. It also offers a search/filter functionality.
 
 ### Example
 
 ${(
-    <div style={{ marginTop: 24 }}>
+    <div style={{ flexBasis: "100%", marginTop: 24 }}>
       <Icons descriptors={descriptors} />
     </div>
   )}

@@ -1,6 +1,6 @@
 {
   "name": "@valde/iconography",
-  "version": "0.0.7",
+  "version": "0.0.0",
   "module": "lib/index.js",
   "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
   "license": "MIT",

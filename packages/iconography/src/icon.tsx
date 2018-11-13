@@ -305,8 +305,6 @@ const Canvas = styled("div")<{ highlighted?: boolean }>`
 `;
 
 const Root = styled("div")`
-  margin-right: 16px;
-  margin-bottom: 16px;
   width: ${kRootSize}px;
 
   svg {
