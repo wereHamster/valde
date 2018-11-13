@@ -3,6 +3,7 @@ import * as React from "react";
 import styled from "react-emotion";
 import { Descriptor } from "./types";
 import { Icon } from "./icon";
+import { Theme } from "@catalog/core/types/catalog";
 
 export interface IconsProps {
   descriptors: Descriptor[];
@@ -97,16 +98,6 @@ const Input = styled("input")<{ theme: Theme }>`
     border-color: ${p => p.theme.brandColor};
   }
 `;
-
-interface Theme {
-  brandColor: string;
-  fontHeading: string;
-  textColor: string;
-  sidebarColorText: string;
-  sidebarColorTextActive: string;
-  baseFontSize: number;
-  msRatio: number;
-}
 
 const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
   `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;

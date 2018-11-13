@@ -4,7 +4,7 @@ import * as ReactDOMServer from "react-dom/server";
 import styled, { injectGlobal } from "react-emotion";
 import posed from "react-pose";
 import Measure, { MeasuredComponentProps, BoundingRect } from "react-measure";
-import { markdown } from "@catalog/core";
+import { markdown, Theme } from "@catalog/core";
 import { Size, Descriptor, Instance } from "./types";
 
 /* tslint:disable-next-line */
@@ -434,16 +434,6 @@ const DetailHeader = styled("div")<{ theme: Theme }>`
     margin: 0;
   }
 `;
-
-interface Theme {
-  brandColor: string;
-  fontHeading: string;
-  textColor: string;
-  sidebarColorText: string;
-  sidebarColorTextActive: string;
-  baseFontSize: number;
-  msRatio: number;
-}
 
 const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
   `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;
