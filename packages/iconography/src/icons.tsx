@@ -31,8 +31,8 @@ export class Icons extends React.PureComponent<IconsProps, State> {
       if (search === "") {
         return (ds: Descriptor[]) => ds;
       } else {
-        const re = new RegExp(`${search}`, 'i');
-        return (ds: Descriptor[]) => ds.filter(d => d.name.match(re))
+        const re = new RegExp(`${search}`, "i");
+        return (ds: Descriptor[]) => ds.filter(d => d.name.match(re));
       }
     })();
 
@@ -49,8 +49,8 @@ export class Icons extends React.PureComponent<IconsProps, State> {
           />
         </Filter>
         <Grid>
-          {filterDescriptors(descriptors).map((descriptor, i) => (
-            <Icon allSizes={[]} descriptor={descriptor} />
+          {filterDescriptors(descriptors).map(descriptor => (
+            <Icon key={descriptor.name} allSizes={[]} descriptor={descriptor} />
           ))}
         </Grid>
       </Root>
