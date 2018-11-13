@@ -1,10 +1,10 @@
 {
-  "name": "@valde/icon-specimen",
-  "version": "0.0.7",
+  "name": "@valde/iconography",
+  "version": "0.0.0",
   "module": "lib/index.js",
   "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
   "license": "MIT",
-  "description": "IconSpecimen component for use in Catalog",
+  "description": "Iconography components for use in Catalog",
   "repository": {
     "type": "git",
     "url": "https://github.com/wereHamster/valde.git"

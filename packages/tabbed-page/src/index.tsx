@@ -1,7 +1,7 @@
 import * as PropTypes from "prop-types";
 import * as React from "react";
 import styled from "react-emotion";
-import { Page } from "@catalog/core";
+import { Page, Theme } from "@catalog/core";
 
 export interface Pane {
   label: string;
@@ -88,14 +88,6 @@ const Content = styled("div")`
     padding: 0;
   }
 `;
-
-interface Theme {
-  fontHeading: string;
-  sidebarColorText: string;
-  sidebarColorTextActive: string;
-  baseFontSize: number;
-  msRatio: number;
-}
 
 const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
   `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;

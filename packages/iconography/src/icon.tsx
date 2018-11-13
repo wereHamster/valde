@@ -4,7 +4,8 @@ import * as ReactDOMServer from "react-dom/server";
 import styled, { injectGlobal } from "react-emotion";
 import posed from "react-pose";
 import Measure, { MeasuredComponentProps, BoundingRect } from "react-measure";
-import { markdown } from "@catalog/core";
+import { markdown, Theme } from "@catalog/core";
+import { Size, Descriptor, Instance } from "./types";
 
 /* tslint:disable-next-line */
 injectGlobal`
@@ -14,22 +15,6 @@ div[class*="AppLayout"] {
 `;
 
 const kRootSize = 100;
-
-/**
- * The size of an icon. It's either responsive (adapts to EM), or has
- * a fixed size.
- */
-export type Size = "responsive" | number;
-
-export interface Instance {
-  size: Size;
-  Component: React.ReactType;
-}
-
-export interface Descriptor {
-  name: string;
-  instances: Instance[];
-}
 
 export interface Props {
   allSizes: Size[];
@@ -94,7 +79,7 @@ const Preview = styled(
   })
 )``;
 
-class IconSpecimenImpl extends React.PureComponent<Props, State> {
+export class Icon extends React.PureComponent<Props, State> {
   static contextTypes = {
     catalog: PropTypes.object.isRequired
   };
@@ -132,8 +117,6 @@ class IconSpecimenImpl extends React.PureComponent<Props, State> {
   }
 }
 
-export const IconSpecimen: React.ComponentType<Props> = IconSpecimenImpl;
-
 class Inner extends React.PureComponent<Props & State & BoundingRect & { toggle(): void }> {
   render() {
     const { isOpen, activeInstance, width, height, toggle } = this.props;
@@ -144,7 +127,7 @@ class Inner extends React.PureComponent<Props & State & BoundingRect & { toggle(
 
         <Preview>
           {!isOpen && (
-            <Icon
+            <IconCanvas
               width={width}
               height={height}
               size={activeInstance.size === "responsive" ? 32 : activeInstance.size}
@@ -227,7 +210,7 @@ class Detail extends React.PureComponent<Props & State & { toggle(): void }, { a
         <div style={{ display: "flex", justifyContent: "center" }}>
           {instances.map(({ size, Component }, i) => (
             <CanvasBoxChild key={i}>
-              <Icon
+              <IconCanvas
                 width={160}
                 height={160}
                 size={size === "responsive" ? 60 : size}
@@ -322,8 +305,6 @@ const Canvas = styled("div")<{ highlighted?: boolean }>`
 `;
 
 const Root = styled("div")`
-  margin-right: 16px;
-  margin-bottom: 16px;
   width: ${kRootSize}px;
 
   svg {
@@ -331,7 +312,7 @@ const Root = styled("div")`
   }
 `;
 
-interface IconProps {
+interface IconCanvasProps {
   width: number;
   height: number;
 
@@ -341,7 +322,7 @@ interface IconProps {
   highlighted?: boolean;
 }
 
-class Icon extends React.PureComponent<IconProps & React.HTMLAttributes<HTMLDivElement>> {
+class IconCanvas extends React.PureComponent<IconCanvasProps & React.HTMLAttributes<HTMLDivElement>> {
   render() {
     const { width, height, size, Component, ...props } = this.props;
 
@@ -453,16 +434,6 @@ const DetailHeader = styled("div")<{ theme: Theme }>`
     margin: 0;
   }
 `;
-
-interface Theme {
-  brandColor: string;
-  fontHeading: string;
-  textColor: string;
-  sidebarColorText: string;
-  sidebarColorTextActive: string;
-  baseFontSize: number;
-  msRatio: number;
-}
 
 const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
   `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;
