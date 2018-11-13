@@ -8,5 +8,8 @@
     "jsx": "react",
 
     "strict": true,
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   }
 }
