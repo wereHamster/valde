@@ -5,6 +5,7 @@
     "interface-name": [false],
     "max-classes-per-file": [false, 1],
     "member-access": false,
+    "member-ordering": false,
     "no-bitwise": false,
     "object-literal-sort-keys": false,
     "ordered-imports": [false]

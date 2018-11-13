@@ -21,6 +21,7 @@ export interface Props {
 
 interface State {
   isOpen: boolean;
+  descriptor: Descriptor;
   activeInstance: Instance;
 }
 
@@ -85,8 +86,20 @@ export class Icon extends React.PureComponent<Props, State> {
 
   state: State = {
     isOpen: false,
+    descriptor: this.props.descriptor,
     activeInstance: this.props.descriptor.instances[0]
   };
+
+  static getDerivedStateFromProps(props: Props, state: State) {
+    if (props.descriptor !== state.descriptor) {
+      return {
+        descriptor: props.descriptor,
+        activeInstance: props.descriptor.instances[0]
+      };
+    } else {
+      return null;
+    }
+  }
 
   toggle = (): void => {
     this.setState({ isOpen: !this.state.isOpen });
@@ -139,15 +152,36 @@ class Inner extends React.PureComponent<Props & State & BoundingRect & { toggle(
   }
 }
 
-class Detail extends React.PureComponent<Props & State & { toggle(): void }, { activeInstance: Instance }> {
+interface DetailProps extends Props, State {
+  toggle(): void;
+}
+
+interface DetailState {
+  descriptor: Descriptor;
+  activeInstance: Instance;
+}
+
+class Detail extends React.PureComponent<DetailProps, DetailState> {
   static contextTypes = {
     catalog: PropTypes.object.isRequired
   };
   context!: { catalog: any };
 
   state = {
+    descriptor: this.props.descriptor,
     activeInstance: this.props.descriptor.instances[0]
   };
+
+  static getDerivedStateFromProps(props: Props, state: State) {
+    if (props.descriptor !== state.descriptor) {
+      return {
+        descriptor: props.descriptor,
+        activeInstance: props.descriptor.instances[0]
+      };
+    } else {
+      return null;
+    }
+  }
 
   activateInstance = (i: number) => (): void => {
     this.setState({ activeInstance: this.props.descriptor.instances[i] });
