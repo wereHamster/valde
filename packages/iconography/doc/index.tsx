@@ -113,11 +113,29 @@ export default {
   component: () => markdown`
 ![version](https://img.shields.io/npm/v/@valde/iconography.svg)
 
-# Icon
+# Introduction
+
+In the context of the @valde/iconography package, we see icons as square components, usually SVGs. A particular icon (eg. a checkmark) can come in different sizes.
+
+Icons are implemented as React components. Whether you use a webpack loader, or inline the SVG into your modules is up to you.
+
+~~~hint
+We plan to offer tooling to convert icons from various sources (eg. a folder of SVG files, a Sketch file, Figma project etc) into a form that can be easily integrated into the catalog.
+~~~
+
+## <Icons>
+
+The \`Icons\` component displays icons in a grid and offers search/filter functionality.
+
+${(
+    <div style={{ flexBasis: "100%", marginTop: 24 }}>
+      <Icons descriptors={descriptors} />
+    </div>
+  )}
+
+## <Icon>
 
 The \`Icon\` component displays one named icon and also provides a detail view that shows more details (eg. multiple sizes) of that icon.
-
-This component is best used in a grid, to show a whole range if icons next to each other.
 
 ### Example
 
@@ -126,42 +144,5 @@ ${(
       <Icon allSizes={[]} descriptor={descriptors[0]} />
     </div>
   )}
-
-
-### Usage
-
-~~~code|lang-js
-import { Icon } from "@valde/iconography";
-
-<Icon
-  allSizes={[16, 24]}
-  descriptor={{
-    name: "angle-back",
-    instances: [
-      {
-        size: 16,
-        Component: require('.../ic_angle-back_16dp.svg')
-      },
-      {
-        size: 24,
-        Component: require('.../ic_angle-back_24dp.svg')
-      }
-    ]
-  }}
-/>
-~~~
-
-
-# Icons
-
-The \`Icons\` component displays a number of icons in a grid. It also offers a search/filter functionality.
-
-### Example
-
-${(
-    <div style={{ flexBasis: "100%", marginTop: 24 }}>
-      <Icons descriptors={descriptors} />
-    </div>
-  )}
-  `
+`
 };
