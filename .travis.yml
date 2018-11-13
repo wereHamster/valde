@@ -2,7 +2,7 @@ sudo: false
 
 language: node_js
 node_js:
-- '10'
+  - "10"
 
 env:
   global:
@@ -10,18 +10,15 @@ env:
 
 cache:
   directories:
-  - node_modules
+    - node_modules
 
 matrix:
   include:
     - name: "Lint"
       script: ./node_modules/.bin/tslint --project packages/tsconfig.tslint.json
+
     - name: "TypeScript"
       script: ./node_modules/.bin/tsc --build packages
 
-deploy:
-  - provider: script
-    script: script/publish --yes from-git
-    skip_cleanup: true
-    on:
-      branch: master
+    - name: "Publish"
+      script: test "$TRAVIS_BRANCH" = "master" && script/publish --yes from-git
