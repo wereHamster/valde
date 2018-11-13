@@ -135,13 +135,24 @@ ${(
 
 ## <Icon>
 
-The \`Icon\` component displays one named icon and also provides a detail view that shows more details (eg. multiple sizes) of that icon.
+The \`Icon\` component displays one named icon and also provides a detail view that shows more details (eg. multiple sizes) of that icon. The component adjusts its size to the width of its container.
 
 ### Example
 
 ${(
-    <div style={{ flexBasis: "100%", marginTop: 24 }}>
-      <Icon allSizes={[]} descriptor={descriptors[0]} />
+    <div style={{ flexBasis: "100%", display: "flex", marginTop: 24 }}>
+      <div style={{ width: 80, marginRight: 16 }}>
+        <Icon allSizes={[]} descriptor={descriptors[0]} />
+      </div>
+      <div style={{ width: 120, marginRight: 16 }}>
+        <Icon allSizes={[]} descriptor={descriptors[1]} />
+      </div>
+      <div style={{ width: 180, marginRight: 16 }}>
+        <Icon allSizes={[]} descriptor={descriptors[2]} />
+      </div>
+      <div style={{ width: 260, marginRight: 16 }}>
+        <Icon allSizes={[]} descriptor={descriptors[3]} />
+      </div>
     </div>
   )}
 `

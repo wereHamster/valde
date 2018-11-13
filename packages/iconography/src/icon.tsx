@@ -14,8 +14,6 @@ div[class*="AppLayout"] {
 }
 `;
 
-const kRootSize = 100;
-
 export interface Props {
   allSizes: Size[];
   descriptor: Descriptor;
@@ -98,28 +96,28 @@ export class Icon extends React.PureComponent<Props, State> {
     const { catalog } = this.context;
 
     return (
-      <Root style={{ zIndex: this.state.isOpen ? 9999 : 1 }}>
-        <Measure bounds>
-          {({ measureRef, contentRect }: MeasuredComponentProps) => (
-            <CanvasContainer innerRef={measureRef}>
-              {contentRect.bounds && (
+      <Measure bounds>
+        {({ measureRef, contentRect }: MeasuredComponentProps) => (
+          <Root innerRef={measureRef} style={{ zIndex: this.state.isOpen ? 9999 : 1 }}>
+            {contentRect.bounds && (
+              <CanvasContainer style={{ width: contentRect.bounds.width, height: contentRect.bounds.width }}>
                 <Inner {...this.props} {...this.state} {...contentRect.bounds} toggle={this.toggle} />
-              )}
-            </CanvasContainer>
-          )}
-        </Measure>
+              </CanvasContainer>
+            )}
 
-        <Name theme={catalog.theme}>{this.props.descriptor.name}</Name>
+            <Name theme={catalog.theme}>{this.props.descriptor.name}</Name>
 
-        <div style={{ display: "none" }}>{StyleInjector}</div>
-      </Root>
+            <div style={{ display: "none" }}>{StyleInjector}</div>
+          </Root>
+        )}
+      </Measure>
     );
   }
 }
 
 class Inner extends React.PureComponent<Props & State & BoundingRect & { toggle(): void }> {
   render() {
-    const { isOpen, activeInstance, width, height, toggle } = this.props;
+    const { isOpen, activeInstance, width, toggle } = this.props;
 
     return (
       <Box pose={isOpen ? "fullscreen" : "initial"} style={{ position: isOpen ? "fixed" : "static" }}>
@@ -129,7 +127,7 @@ class Inner extends React.PureComponent<Props & State & BoundingRect & { toggle(
           {!isOpen && (
             <IconCanvas
               width={width}
-              height={height}
+              height={width}
               size={activeInstance.size === "responsive" ? 32 : activeInstance.size}
               Component={activeInstance.Component}
               onClick={toggle}
@@ -273,8 +271,6 @@ class Detail extends React.PureComponent<Props & State & { toggle(): void }, { a
 
 const CanvasContainer = styled("div")`
   position: relative;
-  width: ${kRootSize}px;
-  height: ${kRootSize}px;
   top: 0;
   left: 0;
   z-index: 99900;
@@ -305,8 +301,7 @@ const Canvas = styled("div")<{ highlighted?: boolean }>`
 `;
 
 const Root = styled("div")`
-  width: ${kRootSize}px;
-
+  position: relative;
   svg {
     display: block;
   }
