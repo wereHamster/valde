@@ -21,4 +21,4 @@ matrix:
       script: ./node_modules/.bin/tsc --build packages
 
     - name: "Publish"
-      script: test "$TRAVIS_BRANCH" = "master" && script/publish --yes from-git
+      script: if test "$TRAVIS_BRANCH" = "master"; then script/publish --yes from-git; fi
