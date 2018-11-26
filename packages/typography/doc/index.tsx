@@ -1,4 +1,4 @@
-import { FontFace, Matrix, Fallback, Font } from "../src/index";
+import { FontFace, Matrix, Fallback, Font, fontUsageCSS } from "../src/index";
 import { markdown } from "@catalog/core";
 
 const tunaLight: FontFace = {
@@ -34,6 +34,18 @@ const tunaRegularItalic: FontFace = {
   cssProperties: {
     fontWeight: 400,
     fontStyle: "italic"
+  }
+};
+
+const tunaBold: FontFace = {
+  name: "Tuna Bold",
+
+  fontFamily: "Tuna",
+  fallback: ["Arial", "serif"],
+
+  cssProperties: {
+    fontWeight: 700,
+    fontStyle: "normal"
   }
 };
 
@@ -84,6 +96,7 @@ ${(
     name="keylineA"
     fontFace={tunaRegular}
     sample="Data Explorer"
+    usage={fontUsageCSS}
     cssProperties={{
       fontSize: "56px",
       lineHeight: 1.1
@@ -106,7 +119,7 @@ ${(
 ${(
   <Font
     name="keylineC"
-    fontFace={tunaRegular}
+    fontFace={tunaBold}
     sample="Cost of a dinner date or a party night around the world"
     cssProperties={{
       fontSize: "32px",
@@ -196,7 +209,6 @@ import { Font } from "@valde/typography";
 <Font
   name="keylineA"
   fontFace={tunaRegular}
-  sample="Data Explorer"
   cssProperties={{
     fontSize: "56px",
     lineHeight: 1.1

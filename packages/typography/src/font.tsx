@@ -8,13 +8,26 @@ export interface FontProps {
   name: string;
   fontFace: FontFace;
 
+  /**
+   * Use this to provide a more project-specific sample text than the pangram.
+   * The "Sample" tab will be shown alongside the pangram, this is not a replacement
+   * for it.
+   */
   sample?: React.ReactNode;
+
+  /**
+   * Information for developers how to use the font in their code. Use the predefined
+   * renderer (fontUsageCSS) or write your own.
+   *
+   * The renderer is given the same props as the Font component itself.
+   */
+  usage?: (props: FontProps, context: { catalog: any }) => React.ReactNode;
 
   cssProperties: React.CSSProperties;
 }
 
 interface State {
-  selectedTab: "PANGRAM" | "SAMPLE" | "DEFINITION" | "CSS";
+  selectedTab: "PANGRAM" | "SAMPLE" | "USAGE" | "CSS";
 }
 
 export class Font extends React.PureComponent<FontProps, State> {
@@ -29,10 +42,8 @@ export class Font extends React.PureComponent<FontProps, State> {
 
   render() {
     const { catalog } = this.context;
-    const { name, fontFace, sample, cssProperties } = this.props;
+    const { name, fontFace, sample, usage, cssProperties } = this.props;
     const { selectedTab } = this.state;
-
-    const { fontSize, lineHeight } = cssProperties;
 
     return (
       <Root>
@@ -60,15 +71,17 @@ export class Font extends React.PureComponent<FontProps, State> {
                 Sample
               </Tab>
             )}
-            <Tab
-              theme={catalog.theme}
-              active={selectedTab === "DEFINITION"}
-              onClick={() => {
-                this.setState({ selectedTab: "DEFINITION" });
-              }}
-            >
-              Definition
-            </Tab>
+            {usage && (
+              <Tab
+                theme={catalog.theme}
+                active={selectedTab === "USAGE"}
+                onClick={() => {
+                  this.setState({ selectedTab: "USAGE" });
+                }}
+              >
+                Usage
+              </Tab>
+            )}
             <Tab
               theme={catalog.theme}
               active={selectedTab === "CSS"}
@@ -92,38 +105,8 @@ export class Font extends React.PureComponent<FontProps, State> {
                 {sample}
               </Sample>
             )}
-            {selectedTab === "DEFINITION" && (
-              <Definition theme={catalog.theme}>
-                <dl>
-                  <div>
-                    <dt>Font:</dt>
-                    <dd>{fontFace.name}</dd>
-                  </div>
-                  <div>
-                    <dt>Size:</dt>
-                    <dd>
-                      {fontSize}/{lineHeight}
-                    </dd>
-                  </div>
-                </dl>
-              </Definition>
-            )}
-            {selectedTab === "CSS" && (
-              <Definition theme={catalog.theme}>
-                .{name} {"{"}
-                <dl>
-                  {Object.keys(cssProperties)
-                    .sort()
-                    .map(k => (
-                      <div key={k}>
-                        <dt>{toKebabCase(k)}:</dt>
-                        <dd>{(cssProperties as any)[k]};</dd>
-                      </div>
-                    ))}
-                </dl>
-                {"}"}
-              </Definition>
-            )}
+            {usage && selectedTab === "USAGE" && usage(this.props, { catalog })}
+            {selectedTab === "CSS" && <ComputedStyle {...this.props} catalog={catalog} />}
           </div>
         </div>
       </Root>
@@ -222,3 +205,77 @@ const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
   `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;
 
 const toKebabCase = (str: string) => str.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+
+export const fontUsageCSS = ({ cssProperties }: FontProps, { catalog }: { catalog: any }) => (
+  <Definition theme={catalog.theme}>
+    .selector {"{"}
+    <dl>
+      {Object.keys(cssProperties)
+        .sort()
+        .map(k => (
+          <div key={k}>
+            <dt>{toKebabCase(k)}:</dt>
+            <dd>{(cssProperties as any)[k]};</dd>
+          </div>
+        ))}
+    </dl>
+    {"}"}
+  </Definition>
+);
+
+class ComputedStyle extends React.PureComponent<
+  FontProps & { catalog: any },
+  { style: undefined | CSSStyleDeclaration }
+> {
+  state: { style: undefined | CSSStyleDeclaration } = {
+    style: undefined
+  };
+
+  extractComputedProperties = (ref: null | any) => {
+    if (ref) {
+      const style = window.getComputedStyle(ref);
+      this.setState({ style });
+    }
+  };
+
+  render() {
+    const { name, fontFace, cssProperties, catalog } = this.props;
+    const { style } = this.state;
+
+    const relevantProperties: any = {};
+    if (style) {
+      for (const s in style) {
+        if (typeof s === "string" && s.match(/^(font[A-Z]|lineHeight)/)) {
+          const value = style[s];
+          if (value && (value !== "normal" && value !== "auto" && value !== "100%")) {
+            relevantProperties[s] = value;
+          }
+        }
+      }
+    }
+
+    return (
+      <>
+        <div
+          style={{ fontFamily: fontFace.fontFamily, ...fontFace.cssProperties, ...cssProperties }}
+          ref={this.extractComputedProperties}
+        />
+
+        <Definition theme={catalog.theme}>
+          .{name} {"{"}
+          <dl>
+            {Object.keys(relevantProperties)
+              .sort()
+              .map(k => (
+                <div key={k}>
+                  <dt>{toKebabCase(k)}:</dt>
+                  <dd>{(relevantProperties as any)[k]};</dd>
+                </div>
+              ))}
+          </dl>
+          {"}"}
+        </Definition>
+      </>
+    );
+  }
+}
