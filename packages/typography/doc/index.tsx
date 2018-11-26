@@ -148,7 +148,6 @@ ${(
   <Font
     name="label"
     fontFace={tunaRegular}
-    sample="Next Story"
     cssProperties={{
       fontSize: "16px",
       lineHeight: "1.3",

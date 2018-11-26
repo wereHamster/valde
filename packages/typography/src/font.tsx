@@ -8,7 +8,7 @@ export interface FontProps {
   name: string;
   fontFace: FontFace;
 
-  sample: React.ReactNode;
+  sample?: React.ReactNode;
 
   cssProperties: React.CSSProperties;
 }
@@ -21,7 +21,7 @@ export class Font extends React.PureComponent<FontProps, State> {
   static contextTypes = {
     catalog: PropTypes.object.isRequired
   };
-  context!: { catalog: any }
+  context!: { catalog: any };
 
   state: State = {
     selectedTab: "PANGRAM"
@@ -49,15 +49,17 @@ export class Font extends React.PureComponent<FontProps, State> {
             >
               Pangram
             </Tab>
-            <Tab
-              theme={catalog.theme}
-              active={selectedTab === "SAMPLE"}
-              onClick={() => {
-                this.setState({ selectedTab: "SAMPLE" });
-              }}
-            >
-              Sample
-            </Tab>
+            {sample && (
+              <Tab
+                theme={catalog.theme}
+                active={selectedTab === "SAMPLE"}
+                onClick={() => {
+                  this.setState({ selectedTab: "SAMPLE" });
+                }}
+              >
+                Sample
+              </Tab>
+            )}
             <Tab
               theme={catalog.theme}
               active={selectedTab === "DEFINITION"}
