@@ -275,7 +275,7 @@ class Detail extends React.PureComponent<DetailProps, DetailState> {
               style={{ fontSize: 14, whiteSpace: "unset", minHeight: 100 }}
               className="catalog-2u9ymu-HighlightedCode-HighlightedCode"
             >
-              {ReactDOMServer.renderToStaticMarkup(<activeInstance.Component />)}
+              {ReactDOMServer.renderToStaticMarkup(React.createElement(activeInstance.Component))}
             </code>
           </div>
           <button
@@ -365,7 +365,7 @@ class IconCanvas extends React.PureComponent<IconCanvasProps & React.HTMLAttribu
             fontSize: `${size}px`
           }}
         >
-          <Component />
+          {React.createElement(Component)}
         </div>
       </Canvas>
     );

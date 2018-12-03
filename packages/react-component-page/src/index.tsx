@@ -116,7 +116,7 @@ export class ReactComponentPage extends React.PureComponent<Props> {
       <Page>
         {headline && `> ${headline}`}
 
-        {<Preview />}
+        {React.createElement(Preview)}
 
         {`### Props`}
         {
