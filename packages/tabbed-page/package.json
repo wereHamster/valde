@@ -1,6 +1,6 @@
 {
   "name": "@valde/tabbed-page",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "module": "lib/index.js",
   "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
   "license": "MIT",
