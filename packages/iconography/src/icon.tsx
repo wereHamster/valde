@@ -1,18 +1,12 @@
 import * as PropTypes from "prop-types";
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server";
-import styled, { injectGlobal } from "react-emotion";
+import styled from "@emotion/styled";
+import { Global, css } from "@emotion/core";
 import posed from "react-pose";
 import Measure, { MeasuredComponentProps, BoundingRect } from "react-measure";
 import { markdown, Theme } from "@catalog/core";
 import { Size, Descriptor, Instance } from "./types";
-
-/* tslint:disable-next-line */
-injectGlobal`
-div[class*="AppLayout"] {
-  z-index: unset;
-}
-`;
 
 export interface Props {
   allSizes: Size[];
@@ -109,21 +103,30 @@ export class Icon extends React.PureComponent<Props, State> {
     const { catalog } = this.context;
 
     return (
-      <Measure bounds>
-        {({ measureRef, contentRect }: MeasuredComponentProps) => (
-          <Root innerRef={measureRef} style={{ zIndex: this.state.isOpen ? 9999 : 1 }}>
-            {contentRect.bounds && (
-              <CanvasContainer style={{ width: contentRect.bounds.width, height: contentRect.bounds.width }}>
-                <Inner {...this.props} {...this.state} {...contentRect.bounds} toggle={this.toggle} />
-              </CanvasContainer>
-            )}
+      <>
+        <Global
+          styles={css`
+            div[class*="AppLayout"] {
+              z-index: unset;
+            }
+          `}
+        />
+        <Measure bounds>
+          {({ measureRef, contentRect }: MeasuredComponentProps) => (
+            <Root ref={measureRef} style={{ zIndex: this.state.isOpen ? 9999 : 1 }}>
+              {contentRect.bounds && (
+                <CanvasContainer style={{ width: contentRect.bounds.width, height: contentRect.bounds.width }}>
+                  <Inner {...this.props} {...this.state} {...contentRect.bounds} toggle={this.toggle} />
+                </CanvasContainer>
+              )}
 
-            <Name theme={catalog.theme}>{this.props.descriptor.name}</Name>
+              <Name theme={catalog.theme}>{this.props.descriptor.name}</Name>
 
-            <div style={{ display: "none" }}>{StyleInjector}</div>
-          </Root>
-        )}
-      </Measure>
+              <div style={{ display: "none" }}>{StyleInjector}</div>
+            </Root>
+          )}
+        </Measure>
+      </>
     );
   }
 }
