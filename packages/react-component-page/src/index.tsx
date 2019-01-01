@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import { Page, CodeSpecimen } from "@catalog/core";
 
 /* tslint:disable-next-line */

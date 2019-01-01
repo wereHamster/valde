@@ -11,7 +11,8 @@
   },
   "peerDependencies": {
     "@catalog/core": "^4.0.0",
-    "emotion": "^9.2.6",
+    "@emotion/core": "^10.0.5",
+    "@emotion/styled": "^10.0.5",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

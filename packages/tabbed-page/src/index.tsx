@@ -1,6 +1,6 @@
 import * as PropTypes from "prop-types";
 import * as React from "react";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import { Page, Theme } from "@catalog/core";
 
 export interface Pane {
