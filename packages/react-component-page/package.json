@@ -3,6 +3,7 @@
   "version": "0.0.7",
   "description": "",
   "module": "lib/index.js",
+  "types": "lib/index.d.ts",
   "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
   "license": "MIT",
   "repository": {
@@ -25,5 +26,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "sideEffects": false
 }
