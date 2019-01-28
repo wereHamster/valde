@@ -313,6 +313,11 @@ const CanvasContainer = styled("div")`
   z-index: 99900;
 `;
 
+const Rect = styled("rect")`
+  opacity: 0;
+  transition: opacity 0.2s;
+`;
+
 const Canvas = styled("div")<{ highlighted?: boolean }>`
   display: flex;
   justify-content: center;
@@ -327,12 +332,7 @@ const Canvas = styled("div")<{ highlighted?: boolean }>`
     box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1);
   }
 
-  svg rect {
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  &:hover svg rect {
+  &:hover ${Rect} {
     opacity: 1;
   }
 `;
@@ -410,7 +410,7 @@ class Grid extends React.PureComponent<{ size: number }> {
     return (
       <svg style={{ display: "block", position: "absolute", zIndex: 5 }} width="120" height="120" viewBox="0 0 120 120">
         <g>
-          <rect x={center - halfSize} y={center - halfSize} width={size} height={size} fill="#FFBBFF" />
+          <Rect x={center - halfSize} y={center - halfSize} width={size} height={size} fill="#FFBBFF" />
 
           <Corner dx={sub} dy={sub} />
           <Corner dx={add} dy={sub} />
