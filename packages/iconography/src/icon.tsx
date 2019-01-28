@@ -332,7 +332,7 @@ const Canvas = styled("div")<{ highlighted?: boolean }>`
     box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1);
   }
 
-  &:hover ${Rect} {
+  &:hover ${Rect.__emotion_styles} {
     opacity: 1;
   }
 `;
