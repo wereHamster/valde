@@ -332,7 +332,7 @@ const Canvas = styled("div")<{ highlighted?: boolean }>`
     box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1);
   }
 
-  &:hover ${Rect.__emotion_styles} {
+  &:hover svg:first-of-type rect {
     opacity: 1;
   }
 `;
@@ -409,14 +409,12 @@ class Grid extends React.PureComponent<{ size: number }> {
 
     return (
       <svg style={{ display: "block", position: "absolute", zIndex: 5 }} width="120" height="120" viewBox="0 0 120 120">
-        <g>
-          <Rect x={center - halfSize} y={center - halfSize} width={size} height={size} fill="#FFBBFF" />
+        <Rect x={center - halfSize} y={center - halfSize} width={size} height={size} fill="#FFBBFF" />
 
-          <Corner dx={sub} dy={sub} />
-          <Corner dx={add} dy={sub} />
-          <Corner dx={add} dy={add} />
-          <Corner dx={sub} dy={add} />
-        </g>
+        <Corner dx={sub} dy={sub} />
+        <Corner dx={add} dy={sub} />
+        <Corner dx={add} dy={add} />
+        <Corner dx={sub} dy={add} />
       </svg>
     );
   }
