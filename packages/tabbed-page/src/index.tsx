@@ -21,7 +21,7 @@ export class TabbedPage extends React.PureComponent<Props, State> {
   static contextTypes = {
     catalog: PropTypes.object.isRequired
   };
-  context!: { catalog: any }
+  context!: { catalog: any };
 
   state: State = {
     activePaneIndex: this.props.initialPaneIndex || 0
@@ -59,24 +59,23 @@ const Menu = styled("div")`
   flex-basis: 100%;
 `;
 
-const MenuItem = styled("div")`
+const MenuItem = styled<"div", { theme: Theme; isActive: boolean }>("div")`
   font-style: normal;
   font-weight: 400;
   text-rendering: optimizeLegibility;
-  color: ${(p: { theme: Theme }) => p.theme.sidebarColorText};
-  font-family: ${(p: { theme: Theme }) => p.theme.fontHeading};
-  font-size: ${(p: { theme: Theme }) => getFontSize(p.theme, 2)};
-  line-height: ${(p: { theme: Theme }) => p.theme.msRatio};
+  color: ${p => p.theme.sidebarColorText};
+  font-family: ${p => p.theme.fontHeading};
+  font-size: ${p => getFontSize(p.theme, 2)};
+  line-height: ${p => p.theme.msRatio};
   position: relative;
   margin-right: 32px;
-  border-bottom: 2px solid
-    ${(p: { theme: Theme; isActive: boolean }) => (p.isActive ? p.theme.sidebarColorTextActive : "transparent")};
+  border-bottom: 2px solid ${p => (p.isActive ? p.theme.sidebarColorTextActive : "transparent")};
   cursor: pointer;
   transition: color 0.12s;
   user-select: none;
 
   &:hover {
-    color: ${(p: { theme: Theme }) => p.theme.sidebarColorTextActive};
+    color: ${p => p.theme.sidebarColorTextActive};
   }
 `;
 
