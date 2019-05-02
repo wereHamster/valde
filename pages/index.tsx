@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Catalog } from "@catalog/core";
+import { Catalog, markdown } from "@catalog/core";
 import { Global, css } from "@emotion/core";
 
 const globalStyles = css`
@@ -165,12 +165,12 @@ const config = {
     {
       title: "Welcome",
       path: "/",
-      component: require("../README.md")
+      component: () => markdown`${require("../README.md").default}`
     },
     {
       title: "Contributing",
       path: "/contributing",
-      component: require("../docs/contributing.md")
+      component: () => markdown`${require("../docs/contributing.md").default}`
     },
     {
       title: "Packages",
@@ -187,7 +187,7 @@ const config = {
         {
           title: "Typography",
           path: "/user-guides/typography",
-          component: require("../docs/user-guides/typography.md")
+          component: () => markdown`${require("../docs/user-guides/typography.md").default}`
         }
       ]
     },
