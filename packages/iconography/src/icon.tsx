@@ -381,7 +381,7 @@ class Grid extends React.PureComponent<{ size: number }> {
 
     const halfSize = size / 2;
     const center = 60;
-    const whiskerLength = size / 2;
+    const whiskerLength = Math.min(16, size / 2);
 
     const Corner = ({ dx, dy }: { dx: (a: number, b: number) => number; dy: (a: number, b: number) => number }) => (
       <g>
@@ -408,7 +408,12 @@ class Grid extends React.PureComponent<{ size: number }> {
     const sub = (a: number, b: number): number => a - b;
 
     return (
-      <svg style={{ display: "block", position: "absolute", zIndex: 5 }} width="120" height="120" viewBox="0 0 120 120">
+      <svg
+        style={{ display: "block", position: "absolute", zIndex: 5, overflow: "visible" }}
+        width="120"
+        height="120"
+        viewBox="0 0 120 120"
+      >
         <Rect x={center - halfSize} y={center - halfSize} width={size} height={size} fill="#FFBBFF" />
 
         <Corner dx={sub} dy={sub} />

@@ -128,10 +128,10 @@ We plan to offer tooling to convert icons from various sources (eg. a folder of 
 The \`Icons\` component displays icons in a grid and offers search/filter functionality.
 
 ${(
-    <div style={{ flexBasis: "100%", marginTop: 24 }}>
-      <Icons descriptors={descriptors} />
-    </div>
-  )}
+  <div style={{ flexBasis: "100%", marginTop: 24 }}>
+    <Icons descriptors={descriptors} />
+  </div>
+)}
 
 ## <Icon>
 
@@ -140,20 +140,23 @@ The \`Icon\` component displays one named icon and also provides a detail view t
 ### Example
 
 ${(
-    <div style={{ flexBasis: "100%", display: "flex", marginTop: 24 }}>
-      <div style={{ width: 80, marginRight: 16 }}>
-        <Icon allSizes={[]} descriptor={descriptors[0]} />
-      </div>
-      <div style={{ width: 120, marginRight: 16 }}>
-        <Icon allSizes={[]} descriptor={descriptors[1]} />
-      </div>
-      <div style={{ width: 180, marginRight: 16 }}>
-        <Icon allSizes={[]} descriptor={descriptors[2]} />
-      </div>
-      <div style={{ width: 260, marginRight: 16 }}>
-        <Icon allSizes={[]} descriptor={descriptors[3]} />
-      </div>
+  <div style={{ flexBasis: "100%", display: "flex", marginTop: 24 }}>
+    <div style={{ width: 80, marginRight: 16 }}>
+      <Icon allSizes={[]} descriptor={descriptors[0]} />
     </div>
-  )}
+    <div style={{ width: 120, marginRight: 16 }}>
+      <Icon allSizes={[]} descriptor={descriptors[1]} />
+    </div>
+    <div style={{ width: 180, marginRight: 16 }}>
+      <Icon allSizes={[]} descriptor={descriptors[2]} />
+    </div>
+    <div style={{ width: 260, marginRight: 16 }}>
+      <Icon
+        allSizes={[]}
+        descriptor={{ ...descriptors[3], instances: descriptors[3].instances.map(i => ({ ...i, size: 120 })) }}
+      />
+    </div>
+  </div>
+)}
 `
 };
