@@ -447,7 +447,7 @@ const DetailHeader = styled("div")<{ theme: Theme }>`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  background: ${p => p.theme.brandColor};
+  background: ${p => p.theme.pageHeadingBackground};
   margin: 0px;
 
   & div:first-child {
@@ -457,7 +457,7 @@ const DetailHeader = styled("div")<{ theme: Theme }>`
     font-family: ${p => p.theme.fontHeading};
     font-size: ${p => getFontSize(p.theme, 1)};
     line-height: ${p => p.theme.msRatio};
-    color: white;
+    color: ${p => p.theme.pageHeadingTextColor};
     opacity: 0.6;
   }
 
@@ -465,7 +465,7 @@ const DetailHeader = styled("div")<{ theme: Theme }>`
     font-family: ${p => p.theme.fontHeading};
     font-size: ${p => getFontSize(p.theme, 4)};
     line-height: ${p => p.theme.msRatio};
-    color: white;
+    color: ${p => p.theme.pageHeadingTextColor};
     margin: 0;
   }
 `;
