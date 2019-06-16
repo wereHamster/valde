@@ -82,7 +82,7 @@ const MenuItem = styled<"div", { theme: Theme; isActive: boolean }>("div")`
 const Content = styled("div")`
   flex-basis: 100%;
 
-  & > div[class*="Page-Page"] {
+  & > div {
     margin: 0;
     padding: 0;
   }

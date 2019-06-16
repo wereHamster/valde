@@ -16,17 +16,18 @@ const pane2 = {
   render: () => markdown`
 ~~~code|lang-js
 import { TabbedPage } from "@valde/tabbed-page"
+import { Page } from "@catalog/core"
 
 export default () => (
   <TabbedPage
     panes={[
       {
         label: "First Pane",
-        render: () => <div>…</div>
+        render: () => <Page>…</dPageiv>
       },
       {
         label: "Second Pane",
-        render: () => <div>…</div>
+        render: () => <Page>…</Page>
       }
     ]}
   />
