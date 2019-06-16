@@ -58,22 +58,26 @@ const globalStyles = css`
       > li {
         > a {
           border: none;
-          padding: 8px 40px;
+          padding: 8px 40px !important;
           font-size: 1.3rem;
+          border: none;
 
-          &:hover {
+          &:hover, &:active, &:focus {
             text-decoration: underline;
+            border: none;
           }
         }
 
         > div {
           > a {
             border: none;
-            padding: 8px 40px;
+            padding: 8px 40px !important;
             font-size: 1.3rem;
+            border: none;
 
-            &:hover {
+            &:hover, &:active, &:focus {
               text-decoration: underline;
+              border: none;
             }
           }
 
@@ -84,9 +88,11 @@ const globalStyles = css`
                 border: none;
                 padding: 0 40px;
                 font-size: 1rem;
+                border: none;
 
-                &:hover {
+                &:hover, &:active, &:focus {
                   text-decoration: underline;
+                  border: none;
                 }
               }
             }

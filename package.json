@@ -11,7 +11,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@catalog/core": "4.0.0",
+    "@babel/standalone": "^7.4.5",
+    "@catalog/core": "^4.0.1-canary.1",
     "@emotion/core": "^10.0.5",
     "@emotion/styled": "^10.0.5",
     "@types/prettier": "^1.13.2",
