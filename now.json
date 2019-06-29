@@ -1,8 +1,11 @@
 {
+  "version": 2,
   "name": "valde",
-  "public": true,
   "alias": "valde.caurea.org",
   "env": {
     "NODE_ENV": "production"
-  }
+  },
+  "builds": [
+    { "src": "package.json", "use": "@now/static-build" }
+  ]
 }
