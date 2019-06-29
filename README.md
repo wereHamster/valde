@@ -42,7 +42,7 @@ No manual work is required to publish the website. All changes, including pull r
 
 #### Packages
 
-The packages are automatically published to [npm](https://www.npmjs.com/) when you push tags to GitHub (via [Travis CI](https://travis-ci.org/wereHamster/valde)).
+The packages are automatically published to [npm](https://www.npmjs.com/) when you push tags to GitHub (via [GitHub Actions](https://github.com/features/actions)).
 
  1. Use `lerna version` to bump the versions and create Git tags. Be careful when deciding whether the changes require a major, minor or patch version bump.
  2. Push tags to GitHub: `git push`
