@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Icon, Icons, Descriptor } from "../src/index";
 import { markdown } from "@catalog/core";
 

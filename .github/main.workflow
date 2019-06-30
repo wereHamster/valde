@@ -17,7 +17,7 @@ action "TypeScript" {
 action "Lint" {
   needs = "Install"
   uses = "docker://node"
-  args = "./node_modules/.bin/tslint --project packages/tsconfig.tslint.json"
+  args = "./node_modules/.bin/eslint . --ext .js,.jsx,.ts,.tsx"
 }
 
 action "Master" {
