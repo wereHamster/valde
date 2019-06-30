@@ -1,3 +1,4 @@
+import * as React from "react";
 import { TabbedPage } from "../src/index";
 import { markdown } from "@catalog/core";
 

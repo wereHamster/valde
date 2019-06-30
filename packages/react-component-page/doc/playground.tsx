@@ -1,8 +1,9 @@
 import * as React from "react";
 import { ReactComponentPage } from "../src/index";
-import { ReactSpecimen, CodeSpecimen } from "@catalog/core";
+// import { ReactSpecimen, CodeSpecimen } from "@catalog/core";
 import { SomeComponentPageProps } from "../example/__doc__/module.components";
 
+/*
 const Preview = () => (
   <ReactSpecimen sourceText="<… source …>">
     <CodeSpecimen>test</CodeSpecimen>
@@ -48,6 +49,7 @@ const samplePropsCarrier = (
     }}
   />
 );
+*/
 
 export default () => (
   <ReactComponentPage

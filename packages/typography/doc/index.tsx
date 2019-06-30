@@ -1,3 +1,4 @@
+import * as React from "react";
 import { FontFace, Matrix, Fallback, Font, fontUsageCSS } from "../src/index";
 import { markdown } from "@catalog/core";
 
@@ -140,7 +141,7 @@ ${(
           used mainly to compare expat compensation packages.
         </p>
         <p>
-          Fast-forward to the current smartphone era and this year's study covers 77 cities and has over 75,000 data
+          Fast-forward to the current smartphone era and this year&apos;s study covers 77 cities and has over 75,000 data
           points for comparison. With research so large in scope and scale, and communication capabilities far beyond a
           fax machine, it was time to bring Prices and Earnings out of print and into the fully digital world.
         </p>
