@@ -2,7 +2,7 @@ import { Theme } from "@catalog/core";
 import styled from "@emotion/styled";
 import * as PropTypes from "prop-types";
 import * as React from "react";
-import { FontFace } from "./types";
+import { cssFontStack, FontFace } from "./types";
 
 export interface FontProps {
   name: string;
@@ -47,7 +47,7 @@ export class Font extends React.PureComponent<FontProps, State> {
     const { catalog } = this.context;
     const { name, fontFace, sample, usage, cssProperties } = this.props;
     const { selectedTab } = this.state;
-    const fontStack = getFontStack(fontFace)
+    const fontStack = cssFontStack(fontFace)
 
     return (
       <Root>
@@ -208,9 +208,6 @@ const Definition = styled("div")<{ theme: Theme }>`
 const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
   `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;
 
-const getFontStack = (  fontFace: FontFace  ) => 
-   [fontFace.fontFamily, ...fontFace.fallback].join(',')
-
 const toKebabCase = (str: string) => str.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
 
 export const fontUsageCSS = ({ cssProperties }: FontProps, { catalog }: { catalog: any }) => (
@@ -248,7 +245,7 @@ class ComputedStyle extends React.PureComponent<
   render() {
     const { name, fontFace, cssProperties, catalog } = this.props;
     const { style } = this.state;
-    const fontStack = getFontStack(fontFace)
+    const fontStack = cssFontStack(fontFace)
 
     const relevantProperties: any = {};
     if (style) {
