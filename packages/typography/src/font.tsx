@@ -1,7 +1,7 @@
+import { Theme } from "@catalog/core";
+import styled from "@emotion/styled";
 import * as PropTypes from "prop-types";
 import * as React from "react";
-import styled from "@emotion/styled";
-import { Theme } from "@catalog/core";
 import { FontFace } from "./types";
 
 export interface FontProps {
@@ -44,6 +44,7 @@ export class Font extends React.PureComponent<FontProps, State> {
     const { catalog } = this.context;
     const { name, fontFace, sample, usage, cssProperties } = this.props;
     const { selectedTab } = this.state;
+    const fontStack = getFontStack(fontFace)
 
     return (
       <Root>
@@ -96,12 +97,12 @@ export class Font extends React.PureComponent<FontProps, State> {
         <div>
           <div>
             {selectedTab === "PANGRAM" && (
-              <Pangram style={{ fontFamily: fontFace.fontFamily, ...fontFace.cssProperties, ...cssProperties }}>
+              <Pangram style={{ fontFamily: fontStack, ...fontFace.cssProperties, ...cssProperties }}>
                 The quick brown fox jumps over the lazy dog
               </Pangram>
             )}
             {selectedTab === "SAMPLE" && (
-              <Sample style={{ fontFamily: fontFace.fontFamily, ...fontFace.cssProperties, ...cssProperties }}>
+              <Sample style={{ fontFamily: fontStack, ...fontFace.cssProperties, ...cssProperties }}>
                 {sample}
               </Sample>
             )}
@@ -204,6 +205,9 @@ const Definition = styled("div")<{ theme: Theme }>`
 const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
   `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;
 
+const getFontStack = (  fontFace: FontFace  ) => 
+   [fontFace.fontFamily, ...fontFace.fallback].join(',')
+
 const toKebabCase = (str: string) => str.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
 
 export const fontUsageCSS = ({ cssProperties }: FontProps, { catalog }: { catalog: any }) => (
@@ -241,6 +245,7 @@ class ComputedStyle extends React.PureComponent<
   render() {
     const { name, fontFace, cssProperties, catalog } = this.props;
     const { style } = this.state;
+    const fontStack = getFontStack(fontFace)
 
     const relevantProperties: any = {};
     if (style) {
@@ -257,7 +262,7 @@ class ComputedStyle extends React.PureComponent<
     return (
       <>
         <div
-          style={{ fontFamily: fontFace.fontFamily, ...fontFace.cssProperties, ...cssProperties }}
+          style={{ fontFamily: fontStack, ...fontFace.cssProperties, ...cssProperties }}
           ref={this.extractComputedProperties}
         />
 
