@@ -1,7 +1,7 @@
+import { Theme } from "@catalog/core";
+import styled from "@emotion/styled";
 import * as PropTypes from "prop-types";
 import * as React from "react";
-import styled from "@emotion/styled";
-import { Theme } from "@catalog/core";
 import { FontFace } from "./types";
 
 export interface MatrixProps {
@@ -31,7 +31,7 @@ export class Matrix extends React.PureComponent<MatrixProps> {
             if (cut) {
               return <div style={{ ...cut.cssProperties, fontFamily: cut.fontFamily }}>{cut.name}</div>;
             } else {
-              return <Unused theme={catalog.theme}>Not Available</Unused>;
+              return <Unused theme={catalog.theme}>{capitalize(style)} ({weight}) not available</Unused>;
             }
           });
         })}
@@ -71,3 +71,5 @@ const Unused = styled("div")<{ theme: Theme }>`
 
 const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
   `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;
+
+const capitalize = (str: string) => `${str[0].toUpperCase()}${str.slice(1)}`
