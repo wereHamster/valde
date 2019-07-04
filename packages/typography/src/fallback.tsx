@@ -45,6 +45,7 @@ export class Fallback extends React.PureComponent<FallbackProps, State> {
     const { catalog } = this.context;
     const { fontFaces, sample = defaultSample } = this.props;
     const { cut, activeFallback } = this.state;
+    const fontStack = activeFontStack(cut, activeFallback)
 
     return (
       <Root theme={catalog.theme}>
@@ -89,7 +90,7 @@ export class Fallback extends React.PureComponent<FallbackProps, State> {
               {sample}
             </div>
             {activeFallback && (
-              <FallbackOverlay style={{ ...cut.cssProperties, fontFamily: activeFallback }}>{sample}</FallbackOverlay>
+              <FallbackOverlay style={{ ...cut.cssProperties, fontFamily: fontStack }}>{sample}</FallbackOverlay>
             )}
           </Sample>
         </SampleContainer>
@@ -186,3 +187,9 @@ const FallbackOverlay = styled("div")`
 
 const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
   `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;
+
+const  activeFontStack = (cut: FontFace, activeFallback: undefined | string) => {
+  const stack = [cut.fontFamily, ...cut.fallback]
+  const stackIndex = activeFallback ? stack.indexOf(activeFallback) : 0
+  return stack.slice(stackIndex).join(',')
+}
