@@ -36,9 +36,12 @@ export class Font extends React.PureComponent<FontProps, State> {
   };
   context!: { catalog: any };
 
-  state: State = {
-    selectedTab: "PANGRAM"
-  };
+  constructor(props: FontProps) {
+    super(props)
+    this.state = {
+      selectedTab: props.sample ? 'SAMPLE' : 'PANGRAM'
+    }
+  }
 
   render() {
     const { catalog } = this.context;
