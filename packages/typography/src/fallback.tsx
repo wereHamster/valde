@@ -1,11 +1,16 @@
+import { Theme } from "@catalog/core";
+import styled from "@emotion/styled";
 import * as PropTypes from "prop-types";
 import * as React from "react";
-import styled from "@emotion/styled";
-import { Theme } from "@catalog/core";
 import { FontFace } from "./types";
 
 export interface FallbackProps {
   fontFaces: Array<FontFace>;
+
+  /**
+   * Use this to provide your own sample text.
+   */
+  sample?: React.ReactNode;
 }
 
 interface State {
@@ -38,7 +43,7 @@ export class Fallback extends React.PureComponent<FallbackProps, State> {
 
   render() {
     const { catalog } = this.context;
-    const { fontFaces } = this.props;
+    const { fontFaces, sample = defaultSample } = this.props;
     const { cut, activeFallback } = this.state;
 
     return (
@@ -93,7 +98,7 @@ export class Fallback extends React.PureComponent<FallbackProps, State> {
   }
 }
 
-const sample = (
+const defaultSample = (
   <>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
     aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

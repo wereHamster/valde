@@ -1,6 +1,6 @@
-import * as React from "react";
-import { FontFace, Matrix, Fallback, Font, fontUsageCSS } from "../src/index";
 import { markdown } from "@catalog/core";
+import * as React from "react";
+import { Fallback, Font, FontFace, fontUsageCSS, Matrix } from "../src/index";
 
 const tunaLight: FontFace = {
   name: "Tuna Light",
