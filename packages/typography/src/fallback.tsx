@@ -1,11 +1,16 @@
+import { Theme } from "@catalog/core";
+import styled from "@emotion/styled";
 import * as PropTypes from "prop-types";
 import * as React from "react";
-import styled from "@emotion/styled";
-import { Theme } from "@catalog/core";
 import { FontFace } from "./types";
 
 export interface FallbackProps {
   fontFaces: Array<FontFace>;
+
+  /**
+   * Use this to provide your own sample text.
+   */
+  sample?: React.ReactNode;
 }
 
 interface State {
@@ -38,8 +43,9 @@ export class Fallback extends React.PureComponent<FallbackProps, State> {
 
   render() {
     const { catalog } = this.context;
-    const { fontFaces } = this.props;
+    const { fontFaces, sample = defaultSample } = this.props;
     const { cut, activeFallback } = this.state;
+    const fontStack = activeFontStack(cut, activeFallback)
 
     return (
       <Root theme={catalog.theme}>
@@ -84,7 +90,7 @@ export class Fallback extends React.PureComponent<FallbackProps, State> {
               {sample}
             </div>
             {activeFallback && (
-              <FallbackOverlay style={{ ...cut.cssProperties, fontFamily: activeFallback }}>{sample}</FallbackOverlay>
+              <FallbackOverlay style={{ ...cut.cssProperties, fontFamily: fontStack }}>{sample}</FallbackOverlay>
             )}
           </Sample>
         </SampleContainer>
@@ -93,7 +99,7 @@ export class Fallback extends React.PureComponent<FallbackProps, State> {
   }
 }
 
-const sample = (
+const defaultSample = (
   <>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
     aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -181,3 +187,9 @@ const FallbackOverlay = styled("div")`
 
 const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
   `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;
+
+const  activeFontStack = (cut: FontFace, activeFallback: undefined | string) => {
+  const stack = [cut.fontFamily, ...cut.fallback]
+  const stackIndex = activeFallback ? stack.indexOf(activeFallback) : 0
+  return stack.slice(stackIndex).join(',')
+}

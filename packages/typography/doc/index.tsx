@@ -1,12 +1,12 @@
-import * as React from "react";
-import { FontFace, Matrix, Fallback, Font, fontUsageCSS } from "../src/index";
 import { markdown } from "@catalog/core";
+import * as React from "react";
+import { Fallback, Font, FontFace, fontUsageCSS, Matrix } from "../src/index";
 
 const tunaLight: FontFace = {
   name: "Tuna Light",
 
   fontFamily: "Tuna",
-  fallback: ["Arial", "serif"],
+  fallback: ["Roboto Slab", "serif"],
 
   cssProperties: {
     fontWeight: 100,
@@ -18,7 +18,7 @@ const tunaRegular: FontFace = {
   name: "Tuna Regular",
 
   fontFamily: "Tuna",
-  fallback: ["Arial", "serif"],
+  fallback: ["Roboto Slab", "serif"],
 
   cssProperties: {
     fontWeight: 400,
@@ -30,7 +30,7 @@ const tunaRegularItalic: FontFace = {
   name: "Tuna Regular Italic",
 
   fontFamily: "Tuna",
-  fallback: ["Arial", "serif"],
+  fallback: ["Roboto Slab", "serif"],
 
   cssProperties: {
     fontWeight: 400,
@@ -42,7 +42,7 @@ const tunaBold: FontFace = {
   name: "Tuna Bold",
 
   fontFamily: "Tuna",
-  fallback: ["Arial", "serif"],
+  fallback: ["Roboto Slab", "serif"],
 
   cssProperties: {
     fontWeight: 700,
@@ -54,7 +54,7 @@ const tunaBoldItalic: FontFace = {
   name: "Tuna Bold",
 
   fontFamily: "Tuna",
-  fallback: ["Arial", "serif"],
+  fallback: ["Roboto Slab", "serif"],
 
   cssProperties: {
     fontWeight: 700,
@@ -186,7 +186,7 @@ const tunaLight: FontFace = {
   name: "Tuna Light",
 
   fontFamily: "Tuna",
-  fallback: ["Arial", "serif"],
+  fallback: ["Roboto Slab", "serif"],
 
   cssProperties: {
     fontWeight: 100,
