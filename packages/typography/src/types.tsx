@@ -1,5 +1,5 @@
-import * as React from "react";
 import { FontFamilyProperty } from "csstype";
+import * as React from "react";
 
 export interface FontFace {
   /**
@@ -27,4 +27,18 @@ export interface FontFace {
    * across the base font and all fallback fonts.
    */
   cssProperties: React.CSSProperties;
+}
+
+/**
+ * Render a FontFace's fontFamily and fallback font families as a CSS font stack
+ * string for use with the CSS font-family property.
+ * 
+ * @example
+ * const fontFace = { fontFamily: 'Tuna', fallback: ['Roboto Slab', 'serif'], ... }
+ * cssFontStack(fontFace) // "Tuna, 'Roboto Slab', serif"
+ */
+export const cssFontStack = (fontFace: FontFace) => {
+  const hasSpaces = /\s+/
+  const wrapInQuotes = (x: string) => hasSpaces.test(x) ? `"${x}"` : x
+  return [fontFace.fontFamily, ...fontFace.fallback].map(wrapInQuotes).join(',')
 }
