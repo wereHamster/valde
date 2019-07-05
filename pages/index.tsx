@@ -1,9 +1,9 @@
-import * as React from "react";
 import { Catalog, markdown } from "@catalog/core";
-import { Global, css } from "@emotion/core";
+import { css, Global } from "@emotion/core";
+import * as React from "react";
 
 const globalStyles = css`
-  /* Light */
+  /* Tuna Light */
   @font-face {
     font-family: Tuna;
     font-style: normal;
@@ -11,7 +11,7 @@ const globalStyles = css`
     src: url(${require("../fonts/Tuna/371F3E_3_0.woff2")}) format("woff2");
   }
 
-  /* LightItalic */
+  /* Tuna LightItalic */
   @font-face {
     font-family: Tuna;
     font-style: italic;
@@ -19,7 +19,7 @@ const globalStyles = css`
     src: url(${require("../fonts/Tuna/371F3E_5_0.woff2")}) format("woff2");
   }
 
-  /* Regular */
+  /* Tuna Regular */
   @font-face {
     font-family: Tuna;
     font-style: normal;
@@ -27,7 +27,7 @@ const globalStyles = css`
     src: url(${require("../fonts/Tuna/371F3E_7_0.woff2")}) format("woff2");
   }
 
-  /* RegularItalic */
+  /* Tuna RegularItalic */
   @font-face {
     font-family: Tuna;
     font-style: italic;
@@ -35,7 +35,7 @@ const globalStyles = css`
     src: url(${require("../fonts/Tuna/371F3E_9_0.woff2")}) format("woff2");
   }
 
-  /* Bold */
+  /* Tuna Bold */
   @font-face {
     font-family: Tuna;
     font-style: normal;
@@ -43,13 +43,16 @@ const globalStyles = css`
     src: url(${require("../fonts/Tuna/371F3E_0_0.woff2")}) format("woff2");
   }
 
-  /* BoldItalic */
+  /* Tuna BoldItalic */
   @font-face {
     font-family: Tuna;
     font-style: italic;
     font-weight: 700;
     src: url(${require("../fonts/Tuna/371F3E_1_0.woff2")}) format("woff2");
   }
+
+  /* Fallback font for examples: Roboto Slab */
+  @import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
 
   body {
     ul[class*="Menu-className"] {

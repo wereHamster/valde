@@ -34,8 +34,8 @@ export interface FontFace {
  * string for use with the CSS font-family property.
  * 
  * @example
- * const fontFace = { fontFamily: 'Nice Font', fallback: ['Arial', 'sans-serif'], ... }
- * cssFontStack(fontFace) // "'Nice Font', Arial, sans-serif"
+ * const fontFace = { fontFamily: 'Tuna', fallback: ['Roboto Slab', 'serif'], ... }
+ * cssFontStack(fontFace) // "Tuna, 'Roboto Slab', serif"
  */
 export const cssFontStack = (fontFace: FontFace) => {
   const hasSpaces = /\s+/
