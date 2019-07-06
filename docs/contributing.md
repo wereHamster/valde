@@ -29,7 +29,7 @@ The following steps are a best effort. If something doens't work as expected, or
  4. Place all source files into the `src/` folder.
  5. Create a `doc/` folder with an `index.tsx` file that exports a Catalog Page.
  6. Register the catalog page in the main index (`pages/index.tsx`).
- 7. Register the package in `packages/tsconfig.json`.
+ 7. Register the package in `tsconfig.json`.
  8. Restart the server (`npm run dev`) so that it picks up your new package.
 
 As soon as you have something worthwhile to show, open a [Pull Request](https://github.com/wereHamster/valde/pulls) on GitHub.

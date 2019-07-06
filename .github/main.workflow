@@ -11,7 +11,7 @@ action "Install" {
 action "TypeScript" {
   needs = "Install"
   uses = "docker://node"
-  args = "./node_modules/.bin/tsc --build packages"
+  args = "./node_modules/.bin/tsc --build"
 }
 
 action "Lint" {
@@ -20,8 +20,14 @@ action "Lint" {
   args = "./node_modules/.bin/eslint . --ext .js,.jsx,.ts,.tsx"
 }
 
+action "Jest" {
+  needs = "Install"
+  uses = "docker://node"
+  args = "./node_modules/.bin/jest"
+}
+
 action "Master" {
-  needs = ["TypeScript", "Lint"]
+  needs = ["TypeScript", "Lint", "Jest"]
   uses = "actions/bin/filter@master"
   args = "branch master"
 }
