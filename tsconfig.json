@@ -1,0 +1,9 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/iconography" },
+    { "path": "packages/react-component-page" },
+    { "path": "packages/tabbed-page" },
+    { "path": "packages/typography" }
+  ]
+}

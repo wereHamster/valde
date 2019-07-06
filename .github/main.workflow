@@ -11,7 +11,7 @@ action "Install" {
 action "TypeScript" {
   needs = "Install"
   uses = "docker://node"
-  args = "./node_modules/.bin/tsc --build packages"
+  args = "./node_modules/.bin/tsc --build"
 }
 
 action "Lint" {

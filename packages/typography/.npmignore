@@ -1,2 +1,5 @@
-*
-!lib/**/*.{js,d.ts}
+**/__tests__/**
+doc
+src
+tsconfig.json
+tsconfig.tsbuildinfo

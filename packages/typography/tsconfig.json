@@ -1,8 +1,8 @@
 {
-  "extends": "../tsconfig.common.json",
+  "extends": "../../tsconfig.common.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "../../ambient.d.ts"]
 }

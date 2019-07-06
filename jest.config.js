@@ -1,5 +1,5 @@
 module.exports = {
   moduleNameMapper: {
-    '^jest$': '<rootDir>/jest.ts'
+    '^jest/global$': '<rootDir>/jest.ts'
   }
 };
