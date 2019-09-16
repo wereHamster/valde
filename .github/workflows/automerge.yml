@@ -1,11 +1,10 @@
-name: automerge
 on: [pull_request, pull_request_review, status]
+name: automerge
 jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
-      - name: automerge
-        uses: "pascalgn/automerge-action@ef030fabb510b9a5a3bc2e3a0123638e11e72541"
+      - uses: "pascalgn/automerge-action@ef030fabb510b9a5a3bc2e3a0123638e11e72541"
         continue-on-error: true
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
