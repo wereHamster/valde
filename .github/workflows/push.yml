@@ -1,5 +1,4 @@
 on: push
-name: Main
 jobs:
   validate:
     runs-on: ubuntu-latest
