@@ -1,29 +1,23 @@
 on: push
-name: Main
+name: Validate
 jobs:
-  install:
-    name: Install
+  validate:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Install
-      uses: actions/npm@master
+    - uses: actions/npm@master
       with:
         args: ci
-    - name: Jest
-      uses: docker://node
+    - uses: docker://node
       with:
         args: ./node_modules/.bin/jest
-    - name: Lint
-      uses: docker://node
+    - uses: docker://node
       with:
         args: ./node_modules/.bin/eslint . --ext .js,.jsx,.ts,.tsx
-    - name: TypeScript
-      uses: docker://node
+    - uses: docker://node
       with:
         args: ./node_modules/.bin/tsc --build
-    - name: Publish
-      if: github.ref == 'refs/heads/master'
+    - if: github.ref == 'refs/heads/master'
       uses: docker://node
       env:
         NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
