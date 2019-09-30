@@ -29,7 +29,7 @@
     "file-loader": "^4.0.0",
     "jest": "^24.8.0",
     "lerna": "^3.0.1",
-    "next": "^8.0.1",
+    "next": "^9.0.7",
     "prettier": "^1.14.2",
     "prop-types": "^15.6.2",
     "raw-loader": "^3.0.0",
