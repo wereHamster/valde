@@ -68,7 +68,7 @@ const Grid = styled("div")`
   grid-gap: 16px;
 `;
 
-const Filter = styled("div")`
+const Filter = styled("div")<{ theme: Theme }>`
   label {
     display: block;
     margin-bottom: 4px;
