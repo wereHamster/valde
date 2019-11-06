@@ -69,7 +69,7 @@ const Unused = styled("div")<{ theme: Theme }>`
   opacity: 0.5;
 `;
 
-const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
+const getFontSize = ({ baseFontSize, msRatio }: Theme, level = 0) =>
   `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;
 
 const capitalize = (str: string) => `${str[0].toUpperCase()}${str.slice(1)}`

@@ -88,5 +88,5 @@ const Content = styled("div")`
   }
 `;
 
-const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
+const getFontSize = ({ baseFontSize, msRatio }: Theme, level = 0) =>
   `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;

@@ -205,7 +205,7 @@ const Definition = styled("div")<{ theme: Theme }>`
   }
 `;
 
-const getFontSize = ({ baseFontSize, msRatio }: Theme, level: number = 0) =>
+const getFontSize = ({ baseFontSize, msRatio }: Theme, level = 0) =>
   `${(baseFontSize / 16) * Math.pow(msRatio, level)}em`;
 
 const toKebabCase = (str: string) => str.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
