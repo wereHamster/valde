@@ -5,21 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - uses: actions/npm@master
+    - uses: actions/setup-node@v1
       with:
-        args: ci
-    - uses: docker://node
-      with:
-        args: ./node_modules/.bin/jest
-    - uses: docker://node
-      with:
-        args: ./node_modules/.bin/eslint . --ext .js,.jsx,.ts,.tsx
-    - uses: docker://node
-      with:
-        args: ./node_modules/.bin/tsc --build
+        node-version: "12.x"
+    - run: npm install
+    - run: ./node_modules/.bin/jest
+    - run: ./node_modules/.bin/eslint . --ext .js,.jsx,.ts,.tsx
+    - run: ./node_modules/.bin/tsc --build
     - if: github.ref == 'refs/heads/master'
-      uses: docker://node
+      run: script/publish --yes from-git
       env:
         NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-      with:
-        args: script/publish --yes from-git
