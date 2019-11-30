@@ -174,20 +174,20 @@ const config = {
     {
       title: "Welcome",
       path: "/",
-      component: () => markdown`${require("../README.md").default}`
+      component: () => markdown`${require("../../README.md").default}`
     },
     {
       title: "Contributing",
       path: "/contributing",
-      component: () => markdown`${require("../docs/contributing.md").default}`
+      component: () => markdown`${require("../../docs/contributing.md").default}`
     },
     {
       title: "Packages",
       pages: [
-        require("../packages/iconography/doc/index").default,
-        require("../packages/react-component-page/doc/index").default,
-        require("../packages/tabbed-page/doc/index").default,
-        require("../packages/typography/doc/index").default
+        require("../../packages/iconography/doc/index").default,
+        require("../../packages/react-component-page/doc/index").default,
+        require("../../packages/tabbed-page/doc/index").default,
+        require("../../packages/typography/doc/index").default
       ]
     },
     {
@@ -196,7 +196,7 @@ const config = {
         {
           title: "Typography",
           path: "/user-guides/typography",
-          component: () => markdown`${require("../docs/user-guides/typography.md").default}`
+          component: () => markdown`${require("../../docs/user-guides/typography.md").default}`
         }
       ]
     },
@@ -206,7 +206,7 @@ const config = {
         {
           title: "react-component-page",
           path: "/playground/react-component-page",
-          component: require("../packages/react-component-page/doc/playground").default
+          component: require("../../packages/react-component-page/doc/playground").default
         }
       ],
       hideFromMenu: true
