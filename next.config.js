@@ -1,14 +1,14 @@
 const withTypescript = require("@zeit/next-typescript");
 
-const urlLoader = mimetype => ({
+const urlLoader = ({ mimetype, dev, isServer }) => ({
   loader: "url-loader",
   options: {
-    limit: 8192,
+    limit: 256,
     fallback: "file-loader",
     mimetype,
-    name: "[name]-[hash].[ext]",
-    publicPath: "/_next/static/",
-    outputPath: "static/"
+    name: dev ? "[name].[ext]" : "[name]-[hash].[ext]",
+    publicPath: `/_next/static/`,
+    outputPath: `${isServer ? "../" : ""}static/`
   }
 });
 
