@@ -1,4 +1,4 @@
-const withTypescript = require("@zeit/next-typescript");
+const path = require("path");
 
 const urlLoader = ({ mimetype, dev, isServer }) => ({
   loader: "url-loader",
@@ -12,8 +12,10 @@ const urlLoader = ({ mimetype, dev, isServer }) => ({
   }
 });
 
-module.exports = withTypescript({
+module.exports = {
   webpack: config => {
+    config.module.rules[0].include.push(path.join(__dirname, "packages"));
+
     config.module.rules.push({
       test: /\.md$/,
       use: ["raw-loader"]
@@ -29,4 +31,4 @@ module.exports = withTypescript({
 
     return config;
   }
-});
+};
