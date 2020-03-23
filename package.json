@@ -29,7 +29,7 @@
     "jest": "^25.1.0",
     "lerna": "^3.0.1",
     "next": "^9.1.4",
-    "prettier": "^1.14.2",
+    "prettier": "^2.0.1",
     "prop-types": "^15.6.2",
     "raw-loader": "^4.0.0",
     "react": "^16.4.1",
