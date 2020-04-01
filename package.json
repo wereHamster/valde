@@ -37,6 +37,6 @@
     "react-measure": "^2.0.2",
     "react-pose": "^4.0.10",
     "typescript": "^3.4.4",
-    "url-loader": "^3.0.0"
+    "url-loader": "^4.0.0"
   }
 }
