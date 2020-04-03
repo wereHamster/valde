@@ -14,7 +14,7 @@
     "valde-react-component-page-generator": "./lib/compiler.js"
   },
   "dependencies": {
-    "@types/prettier": "^1.13.2",
+    "@types/prettier": "^2.0.0",
     "prettier": "^2.0.2",
     "typescript": "^3.0.1"
   },
