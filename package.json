@@ -14,7 +14,7 @@
     "@catalog/core": "^4.0.1-canary.1",
     "@emotion/core": "^10.0.21",
     "@emotion/styled": "^10.0.17",
-    "@types/prettier": "^1.13.2",
+    "@types/prettier": "^2.0.0",
     "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.7",
     "@types/react-measure": "^2.0.2",
