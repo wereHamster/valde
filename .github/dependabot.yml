@@ -4,8 +4,3 @@ updates:
   directory: "/"
   schedule:
     interval: daily
-  open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: next
-    versions:
-    - ">= 9.0.a, < 9.1"
