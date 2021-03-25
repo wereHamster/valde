@@ -1,4 +1,4 @@
-import { FontFamilyProperty } from "csstype";
+import { Property } from "csstype";
 import * as React from "react";
 
 export interface FontFace {
@@ -12,7 +12,7 @@ export interface FontFace {
   /**
    * The font-family name in the @font-face declaration.
    */
-  fontFamily: FontFamilyProperty;
+  fontFamily: Property.FontFamily;
 
   /**
    * Fallback font families. Include "serif" or "sans-serif" as the
@@ -20,7 +20,7 @@ export interface FontFace {
    *
    * Example: ["sans-serif"]
    */
-  fallback: FontFamilyProperty[];
+  fallback: Property.FontFamily[];
 
   /**
    * CSS properties like font-weight and font-style, which must be consistent
