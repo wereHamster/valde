@@ -1,6 +1,6 @@
 {
   "name": "@valde/typography",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
