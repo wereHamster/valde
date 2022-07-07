@@ -27,7 +27,7 @@
     "eslint-plugin-react-hooks": "^4.0.2",
     "file-loader": "^6.0.0",
     "jest": "^26.0.1",
-    "lerna": "^3.0.1",
+    "lerna": "^5.1.7",
     "next": "^9.1.4",
     "prettier": "^2.0.2",
     "prop-types": "^15.6.2",
